@@ -1,0 +1,15 @@
+{
+  "name": "Commie Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Commie Releases Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)(Commie)"
+      }
+    }
+  ]
+}

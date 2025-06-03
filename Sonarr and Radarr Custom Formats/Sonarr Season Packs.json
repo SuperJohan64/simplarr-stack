@@ -1,0 +1,15 @@
+{
+  "name": "Sonarr Season Packs",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Season Packs Release Type",
+      "implementation": "ReleaseTypeSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": 3
+      }
+    }
+  ]
+}

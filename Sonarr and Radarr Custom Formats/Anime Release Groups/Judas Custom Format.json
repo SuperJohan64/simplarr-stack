@@ -1,0 +1,15 @@
+{
+  "name": "Judas Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Judas Releases Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)Judas"
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "Sonarr Target 1080p File Size and Blocklists",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Season Packs Custom Format: Season Packs Release Type",
+      "implementation": "ReleaseTypeSpecification",
+      "negate": true,
+      "required": true,
+      "fields": {
+        "value": 3
+      }
+    },
+    {
+      "name": "Target 1080p File Size",
+      "implementation": "SizeSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "min": 0.2,
+        "max": 3
+      }
+    },
+    {
+      "name": "Block Release Titles",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": true,
+      "required": true,
+      "fields": {
+        "value": "(?i)^(successfulcrab|lazycunts)$"
+      }
+    },
+    {
+      "name": "Block Release Groups",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": true,
+      "required": true,
+      "fields": {
+        "value": "(?i)^(successfulcrab|lazycunts)$"
+      }
+    }
+  ]
+}

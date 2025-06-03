@@ -1,0 +1,15 @@
+{
+  "name": "Cleo Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Cleo Release Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)(Cleo)"
+      }
+    }
+  ]
+}

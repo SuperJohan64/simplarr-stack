@@ -1,0 +1,15 @@
+{
+  "name": "SubsPlease/HorribleSubs Releases Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "SubsPlease/HorribleSubs Releases Condition",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)(SubsPlease|HorribleSubs)"
+      }
+    }
+  ]
+}

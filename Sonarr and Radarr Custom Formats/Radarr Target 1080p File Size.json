@@ -1,0 +1,16 @@
+{
+  "name": "Radarr Target 1080p File Size",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Target 1080p File Size Condition",
+      "implementation": "SizeSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "min": 1,
+        "max": 8
+      }
+    }
+  ]
+}
