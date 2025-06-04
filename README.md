@@ -25,7 +25,7 @@ OR
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements you can leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`.
-3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `.env` and `.yml` for each container. These files have placeholder comments to make the process easy.
+3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `.env` and `.yml` for each container. These files have placeholder comments to make that process easy.
 
 ### Building the Containers
 
