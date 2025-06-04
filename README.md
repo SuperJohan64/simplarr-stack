@@ -80,7 +80,7 @@ docker logs qbittorrent
   - Check **When ratio reaches**: `0`
   - Check **When total seeding time reaches**: `0 minutes`
   - Check **When inactive seeding time reaches**: `0 minutes`
-  - Action `Stop torrent`
+  - **Action** `Stop torrent`
 
 ### 6. Download Management
 - `Tools > Options > Downloads > Saving Management`
@@ -103,7 +103,7 @@ docker logs qbittorrent
 ### 2. Add Download Client
 - `Settings > Download Clients`
   - Click **+ Add**
-  - Select **qBittorrent**
+  - Select `qBittorrent`
     - **Category** `sonarr`
     - Click `Test` then `Save` 
       *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
@@ -176,7 +176,7 @@ docker logs qbittorrent
 ### 2. Add Download Client
 - `Settings > Download Clients`
   - Click **+ Add**
-  - Select qBittorrent
+  - Select `qBittorrent`
   - Click `Test` then `Save`
     - *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
 
