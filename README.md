@@ -15,11 +15,11 @@ This project provides everything you need to spin up an ARR stack with Plex or J
 
 AND
 
-* **[Plex](https://docs.linuxserver.io/images/docker-plex/)**: A premium media server that requires a paid license for extra features such as gpu transcoding and remote access.
+* **[Plex](https://docs.linuxserver.io/images/docker-plex/)**: A premium media server that requires a paid license for extra features such as hardware (GPU) transcoding and remote access.
 
 OR
 
-* **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: An open source media server that supports gpu transcoding for free.
+* **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free open source media server that supports hardware (GPU) transcoding.
 
 ### Getting Started
 
