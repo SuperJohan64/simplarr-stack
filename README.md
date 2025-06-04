@@ -15,7 +15,7 @@ This project provides everything you need to spin up an ARR stack with Plex or J
 
 AND
 
-* **[Plex](https://docs.linuxserver.io/images/docker-plex/)**: An premium media server that requires a paid license for extra features such as transcoding and remote access.
+* **[Plex](https://docs.linuxserver.io/images/docker-plex/)**: A premium media server that requires a paid license for extra features such as transcoding and remote access.
 
 OR
 
