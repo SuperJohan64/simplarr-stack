@@ -95,7 +95,7 @@ docker logs qbittorrent
 ## Sonarr
 
 ### 1. Access the Web UI
-`http://<ip>:8989`
+- `http://<ip>:8989`
   - **Authentication Method**: `Forms (Login Page)`
   - **Authentication Required**: `Enabled`
   - Set your **Username** and **Password**
