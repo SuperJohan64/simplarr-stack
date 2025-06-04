@@ -106,7 +106,7 @@ docker logs qbittorrent
   - Select `qBittorrent`
     - **Category** `sonarr`
     - Click `Test` then `Save` 
-      *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
+      - *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
 
 ### 3. Add Root Folder
 - `Settings > Media Management > Root Folders`
