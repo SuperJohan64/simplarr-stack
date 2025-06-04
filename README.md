@@ -45,7 +45,7 @@ If you're using Docker on Windows you can also run these commands with the inclu
 
 # Container Configuration
 
-It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ, Sonarr and Radarr won't work.
+It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ the conainters won't work.
 
 ## qBittorrent
 
