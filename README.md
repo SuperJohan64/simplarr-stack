@@ -24,8 +24,8 @@ OR
 ### Getting Started
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
-2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside to fit your needs. Unless you have specific needs you can leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`.
-3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders or drives, you’ll need to adjust the volume mappings for each container. The `.yml` and `.env` files have placeholder comments to make the process easy.
+2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements you can leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`.
+3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `.env` and `.yml` for each container. These files have placeholder comments to make the process easy.
 
 ### Building the Containers
 
@@ -80,7 +80,7 @@ docker logs qbittorrent
   - Check **When ratio reaches**: `0`
   - Check **When total seeding time reaches**: `0 minutes`
   - Check **When inactive seeding time reaches**: `0 minutes`
-  - Action **Stop torrent**
+  - Action `Stop torrent`
 
 ### 6. Download Management
 - `Tools > Options > Downloads > Saving Management`
