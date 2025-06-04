@@ -4,7 +4,7 @@ This project provides everything you need to spin up an ARR stack with Plex or J
 
 ### Included Containers
 
-* **[Watchtower](https://github.com/containrrr/watchtower#)**: Automatically updates containers and removes old images at 9am daily.
+* **[Watchtower](https://github.com/containrrr/watchtower#)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts containers if their network connection is lost.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: An open-source VPN client for routing container traffic.
 * **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
