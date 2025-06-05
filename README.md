@@ -228,12 +228,12 @@ docker logs qbittorrent
 ### 3. Connect Prowlarr to Sonarr & Radarr
 - `Settings > Apps`
   - Click **+ Add Application**.
-  - Choose **Sonarr** or **Radarr** and configure:
-  - **Name**: e.g., `Sonarr` or `Radarr`
-  - **Host**: `http://localhost:8989` or `http://localhost:7878`
-  - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
-  - Click `Test` then `Save`
-    - *Prowlarr will manage indexers for both Sonarr and Radarr*
+  - Choose **Sonarr** or **Radarr**
+    - **Name**: e.g., `Sonarr` or `Radarr`
+    - **Host**: `http://localhost:8989` or `http://localhost:7878`
+    - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
+    - Click `Test` then `Save`
+      - *Prowlarr will manage indexers for both Sonarr and Radarr*
 
 ## Jellyseerr
 
@@ -254,7 +254,7 @@ docker logs qbittorrent
       - **Quality Profile:** `HD-1080p`
       - **Root Folder:** `/data/Movies`
       - **Minimum Availability:** `Released`
-      - Check `Enable Scan`.
+      - Check `Enable Scan`
       - Click `Add Server` at bottom of page
     - Click `Add Sonarr Server`
       - Check `Default Server`
