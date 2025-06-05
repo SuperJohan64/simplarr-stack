@@ -8,13 +8,27 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WATCHTOWER_DISABLE_CONTAINERS=
-      - WATCHTOWER_SCHEDULE=0 0 4 * * *
+      - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
       - TZ=${GLOBAL_TIMEZONE}
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_INCLUDE_RESTARTING=false
       - WATCHTOWER_INCLUDE_STOPPED=false
       - WATCHTOWER_REVIVE_STOPPED=false
       - WATCHTOWER_TIMEOUT=30s
+      - WATCHTOWER_NOTIFICATIONS=shoutrrr
+      - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWER_NOTIFICATION_URL}
+    # You can remove the command section and all the apps listed under it to have Watchtower update all containers running in Docker on your server.
+    command:
+      - watchtower
+      - deunhealth
+      - gluetun
+      - qbittorrent
+      - prowlarr
+      - sonarr
+      - radarr
+      - jellyseerr
+      - jellyfin
+      #- maintainer
 
   deunhealth:
     image: qmcgaw/deunhealth

@@ -206,7 +206,7 @@ docker logs qbittorrent
   - Select `HD-1080p`
     - **Minimum Custom Format Score**: `10`
     - Under the **Custom Format**
-      - **Radarr Target 1080p File Siz**: `10`
+      - **Radarr Target 1080p File Size**: `10`
       - **5.1 Surround**: `2`
       - **x265**: `1`
     - Click `Save`
