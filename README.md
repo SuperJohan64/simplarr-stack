@@ -1,6 +1,6 @@
 # Simplarr-Stack
 
-This project provides everything you need to spin up an ARR stack with Plex or Jellyfin using Docker. It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic. If you're not a NordVPN user and need to use another VPN provider, you'll need to adjust the Gluetun configuration in the appropiate `.yml` file. For detailed instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
+This project provides everything you need to spin up an ARR stack with Plex or Jellyfin using Docker. It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic. If you're not a NordVPN user and need to use another VPN provider, you'll need to adjust the Gluetun configuration in the appropiate `.yml` files. For detailed instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
 ### Included Containers
 
@@ -25,27 +25,41 @@ OR
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements you can leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`.
-3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `.env` and `.yml` for each container. These files have placeholder comments to make that process easy.
+3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `simplarr-stack.env`, `arr.yml`, and the `plex.yml` or `jellyfin.yml` files for each container. These files have placeholder comments to make that process easy.
 
 ### Building the Containers
 
 For Plex run:
 
 ```bash
-docker compose -f simplarr-plex-stack.yml --env-file simplarr-stack.env up -d
+docker compose -f arr.yml -f plex.yml --env-file simplarr-stack.env up -d
 ```
 
 For Jellyfin run:
 
 ```bash
-docker compose -f simplarr-jellyfin-stack.yml --env-file simplarr-stack.env up -d
+docker compose -f arr.yml -f jellyfin.yml --env-file simplarr-stack.env up -d
 ```
 
-If you're using Docker on Windows you can also run these commands with the included `.bat` files.
+If you're using Docker on Windows you can also run these commands with the included `build-simplarr-plex-stack.bat` and `build-simplarr-jellyfin-stack.bat` files.
 
 # Container Configuration
 
+## Folder Structure
+
 It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ the conainters won't work.
+
+The folder structure used by this project is as follows. 
+
+- Media
+  - Anime
+  - Downloads
+    - Complete
+    - Downloading
+  - Movies
+  - Shows
+
+All containers will have the `Media` folder mounted to `/data/Media`. If you're on Windows you can create these folders by running the `create-media-folders.bat` file.
 
 ## qBittorrent
 
@@ -159,7 +173,7 @@ docker logs qbittorrent
       - **Minimum Custom Format Score:** `10`
       - **Upgrade Until Custom Format Score:** `25`
       - **Minimum Custom Format Score Increment:** `1`
-      - Under the **Custom Format**
+      - Under the **Custom Format** remove all the current values and replace them the following
         - **Erai-Raws Custom Format:** `20`
         - **SubsPlease/HorribleSubs Releases Custom Format:** `10`
         - **x265:** `3`

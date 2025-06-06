@@ -19,16 +19,15 @@ services:
       - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWER_NOTIFICATION_URL}
     # You can remove the command section and all the apps listed under it to have Watchtower update all containers running in Docker on your server.
     command:
-      - watchtower
       - deunhealth
       - gluetun
-      - qbittorrent
-      - prowlarr
-      - sonarr
-      - radarr
-      - jellyseerr
       - jellyfin
-      #- maintainer
+      - jellyseerr
+      - prowlarr
+      - qbittorrent
+      - radarr
+      - sonarr
+      - watchtower
 
   deunhealth:
     image: qmcgaw/deunhealth
@@ -197,52 +196,3 @@ services:
     depends_on:
       - sonarr
       - radarr
-
-  jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
-    environment:
-      - PUID=${GLOBAL_PUID}
-      - PGID=${GLOBAL_PGID}
-      - TZ=${GLOBAL_TIMEZONE}
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
-    volumes:
-      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/config:/config
-      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/cache:/cache
-      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/fonts:/usr/local/share/fonts/custom
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
-    ports:
-      - 8096:8096 # The main port for Plex's web interface (http://<IP>:8096/web)
-      - 8920:8920 #optional
-      - 7359:7359/udp #optional
-      - 1900:1900/udp #optional
-    restart: 'unless-stopped'
-    runtime: nvidia
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: ["gpu"]
-
-# Note that maintainerr must run as a user with PGUID 1000 so you must configure your docker host to acomidate.
-# To fix this run 'chown -R 1000:1000 maintainer/' from the arr-stack folder on your host.
-#  maintainerr:
-#    image: ghcr.io/jorenn92/maintainerr:latest
-#    container_name: maintainerr
-#    volumes:
-#      - ${GLOBAL_DOCKERROOTPATH}/maintainerr/data:/opt/data
-#    environment:
-#      - TZ=${GLOBAL_TIMEZONE}
-#    ports:
-#      - 6246:6246
-#    restart: unless-stopped
-#    depends_on:
-#      - sonarr
-#      - radarr

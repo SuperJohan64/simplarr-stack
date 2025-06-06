@@ -1,0 +1,33 @@
+services:  
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=${GLOBAL_PUID}
+      - PGID=${GLOBAL_PGID}
+      - TZ=${GLOBAL_TIMEZONE}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/config:/config
+      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/cache:/cache
+      - ${GLOBAL_DOCKERROOTPATH}/jellyfin/fonts:/usr/local/share/fonts/custom
+      - ${GLOBAL_MEDIAROOTPATH}:/data
+      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+    ports:
+      - 8096:8096 # The main port for Plex's web interface (http://<IP>:8096/web)
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+    restart: 'unless-stopped'
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]

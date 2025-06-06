@@ -1,0 +1,34 @@
+services:  
+  plex:
+    container_name: plex
+    image: linuxserver/plex
+    restart: unless-stopped
+    environment:
+      - PUID=${GLOBAL_PUID}
+      - PGID=${GLOBAL_PGID}
+      - TZ=${GLOBAL_TIMEZONE}
+      - VERSION=latest
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/plex/config/pms:/config
+      - ${GLOBAL_MEDIAROOTPATH}:/data
+      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+    ports:
+      - 32400:32400 # The main port for Plex's web interface (http://<IP>:32400/web)
+      - 1900:1900/udp
+      - 5353:5353/udp
+      - 8324:8324
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+      - 32469:32469
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
