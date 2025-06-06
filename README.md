@@ -282,7 +282,7 @@ docker logs qbittorrent
       - **Quality Profile:** `HD-1080p`
       - **Root Folder:** `/data/Shows`
       - **Anime Series Type:** `Anime`
-      - **Anime Quality Profile:** `Anime HD-1080p (Erai/SubsPlease)`
+      - **Anime Quality Profile:** `Anime HD-1080p (Erai/SubsPlease)` or `HD-1080p` if you did not setup profile for anime
       - **Anime Root Folder:** `/data/Anime`
       - Check `Season Folders`
       - Check `Enable Scan`
