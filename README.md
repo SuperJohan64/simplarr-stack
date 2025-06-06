@@ -293,6 +293,6 @@ docker logs qbittorrent
 - `Settings > General`
   - Check `Enable Image Caching`
   - **Discover Region:** `United States` (or whichever region you're in)
-  - **Discover Language:** `English` and `Japanese` (for Anime)
+  - **Discover Language:** `English` and `Japanese` (Japnese for Anime)
   - Check `Hide Available Media`
   - Click `Save Changes`
