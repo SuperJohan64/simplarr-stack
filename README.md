@@ -43,7 +43,7 @@ For Jellyfin run:
 docker compose -f arr.yml -f jellyfin.yml --env-file simplarr-stack.env up -d
 ```
 
-If you're using Docker on Windows you can also run these commands with the included `build-simplarr-plex-stack.bat` and `build-simplarr-jellyfin-stack.bat` files.
+If you're using Docker on Windows you can also run these commands with the included `build-simplarr-plex-stack.bat` or `build-simplarr-jellyfin-stack.bat` files.
 
 # Container Configuration
 
