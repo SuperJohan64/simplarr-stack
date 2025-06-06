@@ -63,7 +63,7 @@ All containers will have the `Media` folder mounted to `/data/Media`. If you're 
 
 ## qBittorrent
 
-When qBittorrent runs for the first time, it generates a default username and password in the container logs. You can view the container logs via **Docker Desktop**, **Portainer**, or by running the following command.
+When qBittorrent runs for the first time, it generates a default username and password in the container logs. You can view the container logs by running the following command.
 
 ```bash
 docker logs qbittorrent
