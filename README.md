@@ -289,7 +289,7 @@ docker logs qbittorrent
       - Click `Add Server` at bottom of page
     - Click `Finish Setup`
 
-### 2. Settings
+### 2. Settings (Optional)
 - `Settings > General`
   - Check `Enable Image Caching`
   - **Discover Region:** `United States` (or whichever region you're in)
