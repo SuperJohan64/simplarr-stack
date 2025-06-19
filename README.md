@@ -134,6 +134,7 @@ docker logs qbittorrent
 - `Settings > Media Management`
   - Click `Show Advanced`
   - Check `Rename Episodes`
+  - Check `Replace Illegal Characters` 
   - **Colon Repplacement**: `Delete`
   - **Standard Episode Format**: `{Series Title} S{season:00}E{episode:00} {Episode Title}`
   - **Daily Episode Format**: `{Series Title} {Air-Date} {Episode Title}`
@@ -205,8 +206,10 @@ docker logs qbittorrent
 - `Settings > Media Management`
   - Click `Show Advanced`
   - Check `Rename Movies`
+  - Check `Replace Illegal Characters` 
   - **Colon Repplacement**: `Delete`
   - **Standard Movie Format**: `{Movie Title} ({Release Year})`
+  - Check `Delete empty folders`
   - Check `Import Extra Files`
   - **Import Extra Files**: `srt`
   - Check **Unmonitor Deleted Episodes**
