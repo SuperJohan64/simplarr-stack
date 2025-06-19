@@ -21,7 +21,7 @@ AND
 
 OR
 
-* **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free open source media server that supports hardware (GPU) transcoding.
+* **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free media server that supports hardware (GPU) transcoding.
 
 ### Getting Started
 
