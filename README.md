@@ -6,7 +6,7 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 
 ### Included Containers
 
-* **[Watchtower](https://github.com/containrrr/watchtower#)**: Automatically updates containers and removes old images at 4am daily.
+* **[Watchtower](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts containers if their network connection is lost.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
 * **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
@@ -41,6 +41,12 @@ For Jellyfin run:
 
 ```bash
 docker compose -f arr.yml -f jellyfin.yml --env-file simplarr-stack.env up -d
+```
+
+Or for just the ARR apps run:
+
+```bash
+docker compose -f arr.yml --env-file simplarr-stack.env up -d
 ```
 
 If you're using Docker on Windows you can also run these commands with the included `build-simplarr-plex-stack.bat` or `build-simplarr-jellyfin-stack.bat` files.
