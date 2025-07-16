@@ -25,10 +25,10 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
       - 32469:32469
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            count: all
-            capabilities: [gpu]
+    deploy: # Remove if you're not using a Nvidia GPU
+      resources: # Remove if you're not using a Nvidia GPU
+        reservations: # Remove if you're not using a Nvidia GPU
+          devices: # Remove if you're not using a Nvidia GPU
+          - driver: nvidia # Remove if you're not using a Nvidia GPU
+            count: all # Remove if you're not using a Nvidia GPU
+            capabilities: [gpu] # Remove if you're not using a Nvidia GPU

@@ -6,8 +6,8 @@ services:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
-      - NVIDIA_VISIBLE_DEVICES=all
-      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all # Remove if you're not using a Nvidia GPU
+      - NVIDIA_DRIVER_CAPABILITIES=all # Remove if you're not using a Nvidia GPU
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/jellyfin/config:/config
       - ${GLOBAL_DOCKERROOTPATH}/jellyfin/cache:/cache
@@ -24,10 +24,10 @@ services:
       - 1900:1900/udp #optional
     restart: 'unless-stopped'
     runtime: nvidia
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: ["gpu"]
+    deploy: # Remove if you're not using a Nvidia GPU
+      resources: # Remove if you're not using a Nvidia GPU
+        reservations: # Remove if you're not using a Nvidia GPU
+          devices: # Remove if you're not using a Nvidia GPU
+            - driver: nvidia # Remove if you're not using a Nvidia GPU
+              count: all # Remove if you're not using a Nvidia GPU
+              capabilities: ["gpu"] # Remove if you're not using a Nvidia GPU
