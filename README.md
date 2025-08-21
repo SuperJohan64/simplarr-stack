@@ -106,6 +106,8 @@ docker logs qbittorrent
   - **Action** `Stop torrent`
 
 ### 6. Download Management
+- `Tools > Options > Downloads > When adding a torrent`
+  - Check `Delete .torrent files afterwards`
 - `Tools > Options > Downloads > Saving Management`
   - **Default Torrent Management Mode**: `Automatic`
   - **When Torrent Category changed**: `Relocate Torrent`
@@ -114,6 +116,8 @@ docker logs qbittorrent
   - Check `Use Subcategories`
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
+- `Tools > Options > Downloads > Excluded file names`
+  - Check `Excluded file names` and pase the contents of `blocked-files.txt` into this field.
 
 ## Sonarr
 
