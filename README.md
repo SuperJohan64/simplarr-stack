@@ -117,7 +117,7 @@ docker logs qbittorrent
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 - `Tools > Options > Downloads > Excluded file names`
-  - Check `Excluded file names` and pase the contents of `blocked-files.txt` into this field.
+  - Check `Excluded file names` and pase the contents of [this blacklist](https://raw.githubusercontent.com/Cleanuparr/Cleanuparr/refs/heads/main/blacklist) or the `blocked-files.txt` file into this field.
 
 ## Sonarr
 
