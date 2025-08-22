@@ -181,6 +181,35 @@ services:
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    container_name: cleanuparr
+    restart: unless-stopped
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/cleanuparr/config:/config
+    environment:
+      - PORT=11011
+      - BASE_PATH=
+      - PUID=${GLOBAL_PUID}
+      - PGID=${GLOBAL_PGID}
+      - TZ=${GLOBAL_TIMEZONE}
+      - UMASK=022
+    network_mode: service:gluetun
+    depends_on:
+      - gluetun
+      - deunhealth
+      - qbittorrent
+      - sonarr
+      - radarr
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11011/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
+
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
