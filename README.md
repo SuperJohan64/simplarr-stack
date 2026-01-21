@@ -9,10 +9,12 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 * **[Watchtower](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts containers if their network connection is lost.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
+* **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A Proxy that completes Cloudflare challenges.
 * **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
 * **[Prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/)**: Manages torrent indexers.
 * **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
 * **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
+* **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
 * **[Jellyseerr](https://docs.jellyseerr.dev/getting-started/docker?docker-methods=docker-compose)**: A front-end for managing media library requests.
 
 AND
@@ -26,7 +28,7 @@ OR
 ### Getting Started
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
-2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements you can leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`.
+2. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`. Some containers will require PUID/GUID set to 1000 so it's best to configure your enviroment to support it.
 3. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `simplarr-stack.env`, `arr.yml`, and the `plex.yml` or `jellyfin.yml` files for each container. These files have placeholder comments to make that process easy.
 4. If you're not using an Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
 
@@ -117,7 +119,6 @@ docker logs qbittorrent
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 - `Tools > Options > Downloads > Excluded file names`
-  - Check `Excluded file names` and pase the contents of [this blacklist](https://raw.githubusercontent.com/Cleanuparr/Cleanuparr/refs/heads/main/blacklist) or the `blocked-files.txt` file into this field.
 
 ## Sonarr
 
@@ -132,7 +133,7 @@ docker logs qbittorrent
   - Click **+ Add**
   - Select `qBittorrent`
     - **Category** `sonarr`
-    - Click `Test` then `Save` 
+    - Click **Test** then **Save** 
       - *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
 
 ### 3. Add Root Folder
@@ -150,17 +151,17 @@ docker logs qbittorrent
   - **Standard Episode Format**: `{Series Title} S{season:00}E{episode:00} {Episode Title}`
   - **Daily Episode Format**: `{Series Title} {Air-Date} {Episode Title}`
   - **Anime Episode Format**: `{Series Title} S{season:00}E{episode:00} {Episode Title}`
-  - Check `Create Empty Series Folders`
   - Check `Delete Empty Folders`
   - **Episode Title Required**: `Never`
   - Check `Import Extra Files`
-  - **Import Extra Files**: `srt`
+  - **Import Extra Files**: `.srt, .sub, .ass`
   - Check `Unmonitor Deleted Episodes`
+  - Click **Save Changes**
 
 ### 5. Custom Formats and Profiles for Shows (Optional)
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
-    - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then `Save`. Repeat this process for the following JSON files.
+    - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
       - `HDR.json`
       - `Sonarr Season Packs.json`
       - `Sonarr Target 1080p File Size and Blocklists.json`
@@ -173,25 +174,26 @@ docker logs qbittorrent
         - **Sonarr Target 1080p File Size and Blocklists**: `10`
         - **5.1 Surround**: `2`
         - **x265**: `1`
-      - Click `Save`
+      - Click **Save**
 
 ### 6. Custom Formats and Profiles for Anime (Optional)
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
-  - Import the `Erai-Raws Custom Format.json` and `SubsPlease HorribleSubs Custom Format.json` Custom Formats
+  - Import the `Erai-Raws Custom Format.json`, `Erai-Raws Perferred Subs.json`, `Erai-Raws Preferred Audio Language.json` and `SubsPlease HorribleSubs Custom Format.json` Custom Formats
     - Go to `Settings > Profile`
     - Click on the **Clone Profile** button icon in the top right of the `HD-1080p` **Quality Profile**
       - **Name:** `Anime HD-1080p (Erai/SubsPlease)`
       - Check `Upgrades Allowed`
-      - **Upgrade Until:** `HDTV-1080p`
+      - **Upgrade Until:** `Bluray-1080p`
       - **Minimum Custom Format Score:** `10`
-      - **Upgrade Until Custom Format Score:** `25`
+      - **Upgrade Until Custom Format Score:** `40`
       - **Minimum Custom Format Score Increment:** `1`
       - Under the **Custom Format** remove all the current values and replace them the following
-        - **Erai-Raws Custom Format:** `20`
+        - **Erai-Raws Preferred Audio Language:** `20`
+        - **Erai-Raws Perferred Subs:** `15`
+        - **Erai-Raws Custom Format:** `10`
         - **SubsPlease/HorribleSubs Releases Custom Format:** `10`
-        - **x265:** `3`
-        - **Sonarr Season Packs:** `2`
+        - **x265:** `1`
 
 ## Radarr
 
@@ -205,7 +207,7 @@ docker logs qbittorrent
 - `Settings > Download Clients`
   - Click **+ Add**
   - Select `qBittorrent`
-  - Click `Test` then `Save`
+  - Click **Test** then **Save**
     - *No password should be required if qBittorrent is configured to bypass authentication for clients on localhost*
 
 ### 3. Add Root Folder
@@ -222,13 +224,14 @@ docker logs qbittorrent
   - **Standard Movie Format**: `{Movie Title} ({Release Year})`
   - Check `Delete empty folders`
   - Check `Import Extra Files`
-  - **Import Extra Files**: `srt`
+  - **Import Extra Files**: `.srt, .sub, .ass`
   - Check **Unmonitor Deleted Episodes**
+  - Click **Save Changes**
 
 ### 5. Custom Formats and Profiles for Movies (Optional)
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left.
-  - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then `Save`. Repeat this process for the following JSON files.
+  - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
     - `HDR.json`
     - `Radarr Target 1080p File Size.json`
     - `x265.json`
@@ -239,7 +242,7 @@ docker logs qbittorrent
       - **Radarr Target 1080p File Size**: `10`
       - **5.1 Surround**: `2`
       - **x265**: `1`
-    - Click `Save`
+    - Click **Save**
 
 ## Prowlarr
 
@@ -249,21 +252,92 @@ docker logs qbittorrent
   - **Authentication Required**: `Enabled`
   - Set your **Username** and **Password**
 
+### 2. Add Inder Proxies
+- `Settings > Indexers`
+  - Click the **+** and select **FlareSolverr**
+  - **Tags:** `flaresolverr`
+    - Press tab after you finish typing to complete the tag
+  - Click **Save** 
+
 ### 2. Add Indexers
 - `Indexers` in the sidebar
   - Click the **+** button to add a new indexer
   - Choose from public or private indexers and follow the prompts to configure them
   - Test and save each indexer once configured
+  - If your Indexer requires a Cloudflare challenge, add the `flaresolverr` tag to the indexer.
   
 ### 3. Connect Prowlarr to Sonarr & Radarr
 - `Settings > Apps`
-  - Click **+ Add Application**.
+  - Enabled advanced settings by clicking on `Show Advanced`
+  - Click **+ Add Application**
   - Choose **Sonarr** or **Radarr**
-    - **Name**: e.g., `Sonarr` or `Radarr`
+    - **Name**: e.g., `Sonarr`
     - **Host**: `http://localhost:8989` or `http://localhost:7878`
     - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
-    - Click `Test` then `Save`
-      - *Prowlarr will manage indexers for both Sonarr and Radarr*
+    - Check `Sync Reject Blocklisted Torrent Hashes While Grabbing`
+    - Click **Test** then **Save**
+    - Repeat these steps for **Radarr**
+
+## Cleanuparr
+
+### 1. Upload Blacklist
+- Copy the `cleanuparr-blacklist.txt` to Cleanuparr's config folder (GLOBAL_DOCKERROOTPATH/cleanuparr/config)
+
+### 2. Access the Web UI
+- Open: `http://<ip>:11011`
+
+## 3. Add Media Apps
+- `Media Apps > Sonarr`
+  - Click **Add Instance**
+    - **Name:** `Sonarr`
+    - **URL:** `http://<IP>:8989`
+    - **API Key:** copy from `Sonarr > Settings > General > API Key`
+    - Click **Save**
+- `Media Apps > Radarr`
+  - Click **Add Instance**
+    - **Name:** `Radarr`
+    - **URL:** `http://<IP>:7878`
+    - **API Key:** copy from `Radarr > Settings > General > API Key`
+    - Click **Save**
+- `Media Apps > Download Clients`
+  - Click **Add Client**
+    - **Name:** `qBittorrent`
+    - **Client Type:** `qBittorrent`
+    - **Host:** `http://<IP>:8080>`
+    - **Username:** qBittorrent's Username
+    - **Password:** qBittorrent's Password
+      - Change the qBittorrent username/password in `qBittorrent > Tools > Options > WebUI > Authentication > Username/Password`
+
+### 4. Enable Queue Cleaner
+- `Settings > Queue Cleaner`
+  - Check **Enable Queue Cleaner**
+  - Expand **Failed Import Settings**
+    - **Max Strikes:** `3`
+    - **Pattern Mode:** `Exclude`
+    - Click **Save**
+  - Expand **Download Metadata Settings (qBittorrent only)**
+    - **Max Strikes for Downloading Metadata:** `3`
+    - Click **Save**
+  - Expand **Stalled Download Rules**
+    - Click **Add Rule**
+      - **Name:** `Stall Rule`
+      - **Max Strikes:** `3`
+      - Click **Update**
+  - Expand **Slow Download Rules**
+    - Click **Add Rule**
+      - **Name:** `Slow Rule`
+      - **Max Strikes:** `7`
+      - **Min Speed:** `10 KB/s`
+      - Click **Update**
+
+### 5. Malware Blocker
+- `Settings > Malware Blocker`
+  - Check **Enable Malware Blocker**
+    - Expand **Sonar Settings**
+    - Check **Enabnle Sonarr Blocklist**
+    - **Blocklist Path:** `/config/cleanuparr-blacklist.txt`
+  - Click **Save**
+  - Repeat for **Radarr Settings**
 
 ## Jellyseerr
 
@@ -309,4 +383,4 @@ docker logs qbittorrent
   - **Discover Region:** `United States` (or whichever region you're in)
   - **Discover Language:** `English` and `Japanese` (Japnese for anime)
   - Check `Hide Available Media`
-  - Click `Save Changes`
+  - Click **Save Changes**

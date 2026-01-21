@@ -645,13 +645,11 @@
 *.sqz
 *.srec
 *.srep
-*.srt
 *.ssm
 *.stg
 *.stkdoodlz
 *.stproj
 *.sts
-*.sub
 *.svg
 *.swf
 *.sy_

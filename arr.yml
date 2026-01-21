@@ -28,6 +28,8 @@ services:
       - radarr
       - sonarr
       - watchtower
+      - flaresolverr
+      - cleanuparr
 
   deunhealth:
     image: qmcgaw/deunhealth
@@ -50,6 +52,7 @@ services:
       - /dev/net/tun:/dev/net/tun
     ports:
       - 8080:8080 # qbittorrent web interface
+      - 8191:8191 # flaresolverr
       - 8989:8989 # sonarr
       - 7878:7878 # radarr
       - 9696:9696 # prowlarr
@@ -93,6 +96,18 @@ services:
         retries: 3
         start_period: 20s
         timeout: 10s
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - TZ=${GLOBAL_TIMEZONE}
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}flaresolverr/config:/config
+    restart: unless-stopped
+    network_mode: service:gluetun
+    depends_on:
+      - gluetun
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -194,5 +209,26 @@ services:
     ports:
       - 5055:5055
     depends_on:
+      - sonarr
+      - radarr
+
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    container_name: cleanuparr
+    restart: unless-stopped
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/cleanuparr/config:/config
+    environment:
+      - PORT=11011
+      - BASE_PATH=
+      - PUID=${GLOBAL_PUID}
+      - PGID=${GLOBAL_PGID}
+      - TZ=${GLOBAL_TIMEZONE}
+      - UMASK=022
+    ports:
+      - 11011:11011
+    depends_on:
+      - gluetun
+      - qbittorrent
       - sonarr
       - radarr

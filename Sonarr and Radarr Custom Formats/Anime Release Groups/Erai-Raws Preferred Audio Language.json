@@ -1,0 +1,24 @@
+{
+  "name": "Erai-Raws Preferred Audio Language",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Erai-Raws Custom Format: Erai-Raws Releases Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)Erai-Raws"
+      }
+    },
+    {
+      "name": "Eria-Raws Preferred Audio",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "\\(JA\\)"
+      }
+    }
+  ]
+}

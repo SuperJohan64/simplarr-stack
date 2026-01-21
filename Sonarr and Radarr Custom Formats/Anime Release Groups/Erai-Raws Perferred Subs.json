@@ -1,0 +1,24 @@
+{
+  "name": "Erai-Raws Perferred Subs",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "Erai-Raws CR Subs",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "/\\b CR \\b/"
+      }
+    },
+    {
+      "name": "Erai-Raws Custom Format: Erai-Raws Releases Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)Erai-Raws"
+      }
+    }
+  ]
+}
