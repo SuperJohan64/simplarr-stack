@@ -286,7 +286,7 @@ docker logs qbittorrent
 ### 2. Access the Web UI
 - Open: `http://<ip>:11011`
 
-## 3. Add Media Apps
+### 3. Add Media Apps
 - `Media Apps > Sonarr`
   - Click **Add Instance**
     - **Name:** `Sonarr`
