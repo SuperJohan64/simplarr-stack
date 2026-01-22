@@ -29,7 +29,7 @@ OR
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
-3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Unless you have specific requirements leave `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000`. Some containers will require PUID/GUID set to 1000 so it's best to configure your enviroment to support it.
+3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 4. This project's `.yml` and `.env` files map a single folder to the containers. If your media is spread across multiple folders/drives, you’ll need to adjust the volume mappings in the `simplarr-stack.env`, `arr.yml`, and the `plex.yml` or `jellyfin.yml` files for each container. These files have placeholder comments to make that process easy.
 5. If you're not using an Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
 
