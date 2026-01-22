@@ -4,6 +4,8 @@ This project guides you in building an ARR stack with Plex or Jellyfin in Docker
 
 It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic. If you're not a NordVPN user and want to use another VPN provider, you'll need to adjust the Gluetun configuration in the `arr.yml` file. For detailed instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
+Also make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
+
 ### Included Containers
 
 * **[Watchtower](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
@@ -118,7 +120,6 @@ docker logs qbittorrent
   - Check `Use Subcategories`
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
-- `Tools > Options > Downloads > Excluded file names`
 
 ## Sonarr
 
@@ -290,20 +291,20 @@ docker logs qbittorrent
 - `Media Apps > Sonarr`
   - Click **Add Instance**
     - **Name:** `Sonarr`
-    - **URL:** `http://<IP>:8989`
+    - **URL:** `http://<ip>:8989`
     - **API Key:** copy from `Sonarr > Settings > General > API Key`
     - Click **Save**
 - `Media Apps > Radarr`
   - Click **Add Instance**
     - **Name:** `Radarr`
-    - **URL:** `http://<IP>:7878`
+    - **URL:** `http://<ip>:7878`
     - **API Key:** copy from `Radarr > Settings > General > API Key`
     - Click **Save**
 - `Media Apps > Download Clients`
   - Click **Add Client**
     - **Name:** `qBittorrent`
     - **Client Type:** `qBittorrent`
-    - **Host:** `http://<IP>:8080>`
+    - **Host:** `http://<ip>:8080>`
     - **Username:** qBittorrent's Username
     - **Password:** qBittorrent's Password
       - Change the qBittorrent username/password in `qBittorrent > Tools > Options > WebUI > Authentication > Username/Password`
