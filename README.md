@@ -96,6 +96,7 @@ docker logs qbittorrent
 
 ### 4. Torrent Queueing
 - `Tools > Options > BitTorrent > Torrent Queueing`
+  - **Maximum active downloads**: `10`
   - Check `Do not count slow torrents in these limits`
 
 ### 5. Seeding Limits
