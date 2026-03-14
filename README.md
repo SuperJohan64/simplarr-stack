@@ -349,7 +349,7 @@ docker logs qbittorrent
 ### 1. Setup Wizard
 - Open `http://<ip>:5055`
   - `Choose Server Type`
-    - Enter the details for your media server. Note that Seer will not resolve `localhost` or `127.0.0.1` so you must specifiy an IP address or Hostname when connecting Seer to your other services.
+    - Enter the details for your media server. Note that Seerr will not resolve `localhost` or `127.0.0.1` so you must specifiy an IP address or Hostname when connecting Seerr to your other services.
   - `Sign in`
     - Click `Sync Libraries` and select all your libraries
     - Click `Continue`
