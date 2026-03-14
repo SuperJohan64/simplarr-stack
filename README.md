@@ -15,7 +15,7 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 * **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
 * **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
 * **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
-* **[Seer](https://github.com/seerr-team/seerr/pkgs/container/seerr)**: A front-end for managing media library requests.
+* **[Seerr](https://github.com/seerr-team/seerr/pkgs/container/seerr)**: A front-end for managing media library requests.
 
 AND
 
@@ -344,7 +344,7 @@ docker logs qbittorrent
     - Repeat for **Radarr Settings**
   - Click **Save Settings**
 
-## Seer
+## Seerr
 
 ### 1. Setup Wizard
 - Open `http://<ip>:5055`
