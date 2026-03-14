@@ -60,7 +60,7 @@ If you're using Docker on Windows you can also run these commands with the inclu
 
 It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ the conainters won't work.
 
-The folder structure used by this project is as follows. 
+The host's folder structure used by this project is as follows. 
 
 - Media
   - Anime
