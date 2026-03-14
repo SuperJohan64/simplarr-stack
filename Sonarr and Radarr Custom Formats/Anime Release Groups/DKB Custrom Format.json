@@ -1,0 +1,15 @@
+{
+  "name": "DKB Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "DKB",
+      "implementation": "ReleaseTitleSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "^(?i)\\[DKB\\] "
+      }
+    }
+  ]
+}

@@ -10,11 +10,10 @@ services:
       - VERSION=latest
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/plex/config/pms:/config
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+      - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      - ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     ports:
       - 32400:32400 # The main port for Plex's web interface (http://<IP>:32400/web)
       - 1900:1900/udp

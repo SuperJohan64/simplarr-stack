@@ -1,7 +1,7 @@
 services:
 
   watchtower:
-    image: nickfedor/watchtower
+    image: nickfedor/watchtower:$WATCHTOWERTAG
     container_name: watchtower
     restart: unless-stopped
     volumes:
@@ -19,20 +19,10 @@ services:
       - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWER_NOTIFICATION_URL}
     # You can remove the command section and all the apps listed under it to have Watchtower update all containers running in Docker on your server.
     command:
-      - deunhealth
-      - gluetun
-      - jellyfin
-      - jellyseerr
-      - prowlarr
-      - qbittorrent
-      - radarr
-      - sonarr
-      - watchtower
-      - flaresolverr
-      - cleanuparr
+      - $WATCHTOWERCONTAINERS
 
   deunhealth:
-    image: qmcgaw/deunhealth
+    image: qmcgaw/deunhealth:$DEUNHEALTHTAG
     container_name: deunhealth
     network_mode: "none"
     environment:
@@ -44,7 +34,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   gluetun:
-    image: qmcgaw/gluetun
+    image: qmcgaw/gluetun:$GLUETUNTAG
     container_name: gluetun
     cap_add:
       - NET_ADMIN
@@ -68,7 +58,7 @@ services:
     restart: unless-stopped
 
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
+    image: lscr.io/linuxserver/qbittorrent:$QBITTORRENTTAG
     container_name: qbittorrent
     restart: unless-stopped
     labels:
@@ -81,11 +71,10 @@ services:
       - TORRENTING_PORT=6881
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/qbittorrent:/config
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+      - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      - ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     network_mode: service:gluetun
     depends_on:
       - gluetun
@@ -98,19 +87,19 @@ services:
         timeout: 10s
 
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:$FLARESOLVERRTAG
     container_name: flaresolverr
     environment:
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
-      - ${GLOBAL_DOCKERROOTPATH}flaresolverr/config:/config
+      - ${GLOBAL_DOCKERROOTPATH}/flaresolverr/config:/config
     restart: unless-stopped
     network_mode: service:gluetun
     depends_on:
       - gluetun
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
+    image: lscr.io/linuxserver/prowlarr:$PROWLARRTAG
     container_name: prowlarr
     environment:
       - PUID=${GLOBAL_PUID}
@@ -135,7 +124,7 @@ services:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
+    image: lscr.io/linuxserver/sonarr:$SONARRTAG
     container_name: sonarr
     restart: unless-stopped
     environment:
@@ -145,11 +134,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/sonarr:/config
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+      - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      - ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     network_mode: service:gluetun
     depends_on:
       - gluetun
@@ -166,7 +154,7 @@ services:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   radarr:
-    image: lscr.io/linuxserver/radarr:latest
+    image: lscr.io/linuxserver/radarr:$RADARRTAG
     container_name: radarr
     restart: unless-stopped
     environment:
@@ -176,11 +164,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/radarr:/config
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+      - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      - ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     network_mode: service:gluetun
     depends_on:
       - gluetun
@@ -196,9 +183,9 @@ services:
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
-  jellyseerr:
-    image: fallenbagel/jellyseerr:latest
-    container_name: jellyseerr
+  seerr:
+    image: ghcr.io/seerr-team/seerr:$SEERRTAG
+    container_name: seerr
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -213,7 +200,7 @@ services:
       - radarr
 
   cleanuparr:
-    image: ghcr.io/cleanuparr/cleanuparr:latest
+    image: ghcr.io/cleanuparr/cleanuparr:$CLEANUPARRTAG
     container_name: cleanuparr
     restart: unless-stopped
     volumes:

@@ -12,11 +12,10 @@ services:
       - ${GLOBAL_DOCKERROOTPATH}/jellyfin/config:/config
       - ${GLOBAL_DOCKERROOTPATH}/jellyfin/cache:/cache
       - ${GLOBAL_DOCKERROOTPATH}/jellyfin/fonts:/usr/local/share/fonts/custom
-      - ${GLOBAL_MEDIAROOTPATH}:/data
-      #- ${GLOBAL_MEDIA_SHOWS}:/data/Shows
-      #- ${GLOBAL_MEDIA_MOVIES}:/data/Movies
-      #- ${GLOBAL_MEDIA_ANIME}:/data/Anime
-      #- ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
+      - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
+      - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
+      - ${GLOBAL_MEDIA_ANIME}:/data/Anime
+      - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     ports:
       - 8096:8096 # The main port for Plex's web interface (http://<IP>:8096/web)
       - 8920:8920 #optional

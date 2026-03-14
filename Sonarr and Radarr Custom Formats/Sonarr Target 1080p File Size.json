@@ -1,5 +1,5 @@
 {
-  "name": "Sonarr Target 1080p File Size and Blocklists",
+  "name": "Sonarr Target 1080p File Size",
   "includeCustomFormatWhenRenaming": false,
   "specifications": [
     {
@@ -22,21 +22,12 @@
       }
     },
     {
-      "name": "Block Release Titles",
-      "implementation": "ReleaseTitleSpecification",
-      "negate": true,
+      "name": "1080p",
+      "implementation": "ResolutionSpecification",
+      "negate": false,
       "required": true,
       "fields": {
-        "value": "(?i)^(successfulcrab|lazycunts)$"
-      }
-    },
-    {
-      "name": "Block Release Groups",
-      "implementation": "ReleaseGroupSpecification",
-      "negate": true,
-      "required": true,
-      "fields": {
-        "value": "(?i)^(successfulcrab|lazycunts)$"
+        "value": 1080
       }
     }
   ]
