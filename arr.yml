@@ -1,7 +1,7 @@
 services:
 
   watchtower:
-    image: nickfedor/watchtower:$WATCHTOWERTAG
+    image: nickfedor/watchtower:$VERSIONTAG_WATCHTOWER
     container_name: watchtower
     restart: unless-stopped
     volumes:
@@ -22,7 +22,7 @@ services:
       - $WATCHTOWERCONTAINERS
 
   deunhealth:
-    image: qmcgaw/deunhealth:$DEUNHEALTHTAG
+    image: qmcgaw/deunhealth:$VERSIONTAG_DEUNHEALTH
     container_name: deunhealth
     network_mode: "none"
     environment:
@@ -34,7 +34,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   gluetun:
-    image: qmcgaw/gluetun:$GLUETUNTAG
+    image: qmcgaw/gluetun:$VERSIONTAG_GLUETUN
     container_name: gluetun
     cap_add:
       - NET_ADMIN
@@ -58,7 +58,7 @@ services:
     restart: unless-stopped
 
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:$QBITTORRENTTAG
+    image: lscr.io/linuxserver/qbittorrent:$VERSIONTAG_QBITTORRENT
     container_name: qbittorrent
     restart: unless-stopped
     labels:
@@ -87,7 +87,7 @@ services:
         timeout: 10s
 
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:$FLARESOLVERRTAG
+    image: ghcr.io/flaresolverr/flaresolverr:$VERSIONTAG_FLARESOLVERR
     container_name: flaresolverr
     environment:
       - TZ=${GLOBAL_TIMEZONE}
@@ -99,7 +99,7 @@ services:
       - gluetun
 
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:$PROWLARRTAG
+    image: lscr.io/linuxserver/prowlarr:$VERSIONTAG_PROWLARR
     container_name: prowlarr
     environment:
       - PUID=${GLOBAL_PUID}
@@ -124,7 +124,7 @@ services:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:$SONARRTAG
+    image: lscr.io/linuxserver/sonarr:$VERSIONTAG_SONARR
     container_name: sonarr
     restart: unless-stopped
     environment:
@@ -154,7 +154,7 @@ services:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   radarr:
-    image: lscr.io/linuxserver/radarr:$RADARRTAG
+    image: lscr.io/linuxserver/radarr:$VERSIONTAG_RADARR
     container_name: radarr
     restart: unless-stopped
     environment:
@@ -184,7 +184,7 @@ services:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   seerr:
-    image: ghcr.io/seerr-team/seerr:$SEERRTAG
+    image: ghcr.io/seerr-team/seerr:$VERSIONTAG_SEERR
     container_name: seerr
     environment:
       - PUID=${GLOBAL_PUID}
@@ -200,7 +200,7 @@ services:
       - radarr
 
   cleanuparr:
-    image: ghcr.io/cleanuparr/cleanuparr:$CLEANUPARRTAG
+    image: ghcr.io/cleanuparr/cleanuparr:$VERSIONTAG_CLEANUPARR
     container_name: cleanuparr
     restart: unless-stopped
     volumes:

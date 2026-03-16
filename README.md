@@ -6,7 +6,7 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 
 ### Included Containers
 
-* **[Watchtower](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
+* **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts containers if their network connection is lost.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
 * **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A Proxy that completes Cloudflare challenges.
@@ -96,7 +96,9 @@ docker logs qbittorrent
 
 ### 4. Torrent Queueing
 - `Tools > Options > BitTorrent > Torrent Queueing`
-  - **Maximum active downloads**: `10`
+  - **Maximum active downloads**: `15`
+  - **Maximum active uploads**: `15`
+  - **Maximum active torrents**: `15`
   - Check `Do not count slow torrents in these limits`
 
 ### 5. Seeding Limits
