@@ -30,7 +30,7 @@ OR
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
 3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
-4. If you're not using an Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
+4. If you're not using a Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
 
 ### Building the Containers
 
