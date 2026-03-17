@@ -1,6 +1,6 @@
 services:  
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
+    image: lscr.io/linuxserver/jellyfin:${VERSIONTAG_MEDIASERVER}
     container_name: jellyfin
     environment:
       - PUID=${GLOBAL_PUID}

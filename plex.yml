@@ -1,7 +1,7 @@
 services:  
   plex:
     container_name: plex
-    image: linuxserver/plex
+    image: linuxserver/plex:${VERSIONTAG_MEDIASERVER}
     restart: unless-stopped
     environment:
       - PUID=${GLOBAL_PUID}
