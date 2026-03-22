@@ -56,19 +56,21 @@ docker compose -f arr.yml --env-file simplarr-stack.env up -d
 
 ## Folder Structure
 
-It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ the conainters won't work.
+It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ, the containers won't work.
 
-The host or file server's folder structure used by this project is as follows.
+The host or file server's folder structure used by this project is as follows:
 
-- Media
-  - Anime
-  - Downloads
-    - Complete
-    - Downloading
-  - Movies
-  - Shows
+```
+Media/
+├── Anime/
+├── Downloads/
+│   ├── Complete/
+│   └── Downloading/
+├── Movies/
+└── Shows/
+```
 
-The containers will map `Media` to `/data/` allowing you to access these directories at `/data/Anime`, `/data/Downloads`, `/data/Movies`, etc.
+The containers will map `Media` to `/data/`, allowing you to access these directories at `/data/Anime`, `/data/Downloads`, `/data/Movies`, etc.
 
 ## qBittorrent
 
