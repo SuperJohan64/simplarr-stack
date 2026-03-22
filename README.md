@@ -4,7 +4,7 @@ This project guides you in building an ARR stack with Plex or Jellyfin in Docker
 
 It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic from public trackers. If you're not a NordVPN user and want to use another VPN provider, you'll need to adjust the Gluetun configuration in the `arr.yml` file. For instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
-### Included Containers
+## Included Containers
 
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts containers if their network connection is lost.
@@ -25,28 +25,28 @@ OR
 
 * **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free media server that supports hardware (GPU) transcoding.
 
-### Getting Started
+## Getting Started
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
 3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 4. If you're not using a Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
 
-### Building the Containers
+## Building the Containers
 
-For Plex run:
+For an ARR stack with Plex run:
 
 ```bash
 docker compose -f arr.yml -f plex.yml --env-file simplarr-stack.env up -d
 ```
 
-For Jellyfin run:
+For an ARR stack with Jellyfin run:
 
 ```bash
 docker compose -f arr.yml -f jellyfin.yml --env-file simplarr-stack.env up -d
 ```
 
-Or for just the ARR apps run:
+Or for just the ARR stack run:
 
 ```bash
 docker compose -f arr.yml --env-file simplarr-stack.env up -d
