@@ -161,7 +161,7 @@ docker logs qbittorrent
   - Check `Unmonitor Deleted Episodes`
   - Click **Save Changes**
 
-### 5. Custom Formats and Profiles for Shows (Optional)
+### 5. Custom Formats and Profiles for Shows
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
     - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
@@ -232,7 +232,7 @@ docker logs qbittorrent
   - Check **Unmonitor Deleted Episodes**
   - Click **Save Changes**
 
-### 5. Custom Formats and Profiles for Movies (Optional)
+### 5. Custom Formats and Profiles for Movies
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left.
   - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
