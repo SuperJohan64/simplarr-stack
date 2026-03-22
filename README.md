@@ -70,7 +70,7 @@ Media/
 └── Shows/
 ```
 
-The containers will map `Media` to `/data/`, allowing you to access these directories at `/data/Anime`, `/data/Downloads`, `/data/Movies`, etc.
+The containers will map `Media` to `/data/`, allowing you to access these directories at `/data/Anime/`, `/data/Downloads/`, `/data/Movies/`, etc.
 
 ## qBittorrent
 
