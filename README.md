@@ -123,7 +123,7 @@ docker logs qbittorrent
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 
 ### 7. Reverse Proxy (Option)
-*Note if you don't have a reverse proxy (not included in this guide) then you don't need these setting.* 
+*Note if you don't have a reverse proxy (not included in this guide) you can skip this step.* 
  - `Tools > Options > Web UI > Authentication`
   - Check `Enable reverse proxy support`
   - **Trusted proxies list:** <reverse-proxy-ip>
