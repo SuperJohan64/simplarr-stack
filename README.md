@@ -122,7 +122,7 @@ docker logs qbittorrent
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 
-### 7. Reverse Proxy (Option)
+### 7. Reverse Proxy (Optional)
 *Note if you don't have a reverse proxy (not included in this guide) you can skip this step.* 
  - `Tools > Options > Web UI > Authentication`
   - Check `Enable reverse proxy support`
