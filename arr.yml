@@ -97,6 +97,14 @@ services:
     network_mode: service:gluetun
     depends_on:
       - gluetun
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
+    healthcheck:
+        test: ["CMD-SHELL", "curl -fs http://localhost:8191 | grep -q 'FlareSolverr is ready!'"]
+        interval: 60s
+        retries: 3
+        start_period: 20s
+        timeout: 10s
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:${VERSIONTAG_PROWLARR}
