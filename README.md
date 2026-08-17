@@ -9,7 +9,7 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts unhealthy containers.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
-* **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A Proxy that completes Cloudflare challenges.
+* **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A proxy that completes Cloudflare challenges.
 * **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
 * **[Prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/)**: Manages torrent indexers.
 * **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
