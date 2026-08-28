@@ -32,12 +32,6 @@ OR
 
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 
-## Getting Started
-
-1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
-2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
-3. Rename the `.env.EXAMPLE` file to `.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
-
 ## Folder Structure
 
 It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ, the containers won't work.
@@ -55,6 +49,12 @@ Media/
 ```
 
 The containers will map `Media` to `/data/`, allowing you to access these directories at `/data/Anime/`, `/data/Downloads/`, `/data/Movies/`, etc.
+
+## Getting Started
+
+1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
+2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
+3. Rename the `.env.EXAMPLE` file to `.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 
 ## Building the Containers
 
