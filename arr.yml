@@ -24,30 +24,27 @@ services:
   deunhealth:
     image: qmcgaw/deunhealth:${VERSIONTAG_DEUNHEALTH}
     container_name: deunhealth
+    restart: always
     network_mode: "none"
     environment:
       - LOG_LEVEL=info
       - HEALTH_SERVER_ADDRESS=127.0.0.1:9999
       - TZ=${GLOBAL_TIMEZONE}
-    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   gluetun:
     image: qmcgaw/gluetun:${VERSIONTAG_GLUETUN}
     container_name: gluetun
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
     ports:
       - 8080:8080 # qbittorrent web interface
       - 8191:8191 # flaresolverr
       - 8989:8989 # sonarr
       - 7878:7878 # radarr
       - 9696:9696 # prowlarr
-    volumes:
-      - ${GLOBAL_DOCKERROOTPATH}/gluetun:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
@@ -55,29 +52,42 @@ services:
       - OPENVPN_PASSWORD=${VPN_PASSWORD}
       - SERVER_COUNTRIES=${VPN_COUNTRY}
       - HEALTH_VPN_DURATION_INITIAL=120s
-    restart: unless-stopped
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/gluetun:/gluetun
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    healthcheck:
+        test: ping -c 1 www.google.com || exit 1
+        interval: 300s
+        retries: 3
+        start_period: 20s
+        timeout: 10s
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:${VERSIONTAG_FLARESOLVERR}
     container_name: flaresolverr
+    restart: unless-stopped
+    network_mode: service:gluetun
     environment:
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/flaresolverr/config:/config
-    restart: unless-stopped
-    network_mode: service:gluetun
-    labels:
-      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
     healthcheck:
-        test: ["CMD-SHELL", "curl -fs http://localhost:8191 | grep -q 'FlareSolverr is ready!'"]
-        interval: 60s
+        test: ping -c 1 www.google.com || exit 1
+        interval: 300s
         retries: 3
         start_period: 20s
         timeout: 10s
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:${VERSIONTAG_PROWLARR}
     container_name: prowlarr
+    restart: unless-stopped
+    network_mode: service:gluetun
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -85,11 +95,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/prowlarr:/config
-    restart: unless-stopped
-    network_mode: service:gluetun
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 60s
+        interval: 300s
         retries: 3
         start_period: 20s
         timeout: 10s
@@ -100,8 +108,7 @@ services:
     image: lscr.io/linuxserver/qbittorrent:${VERSIONTAG_QBITTORRENT}
     container_name: qbittorrent
     restart: unless-stopped
-    labels:
-      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
+    network_mode: service:gluetun
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -114,18 +121,20 @@ services:
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
       - ${GLOBAL_MEDIA_ANIME}:/data/Anime
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
-    network_mode: service:gluetun
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 60s
+        interval: 300s
         retries: 3
         start_period: 20s
         timeout: 10s
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:${VERSIONTAG_SONARR}
     container_name: sonarr
     restart: unless-stopped
+    network_mode: service:gluetun
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -137,10 +146,9 @@ services:
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
       - ${GLOBAL_MEDIA_ANIME}:/data/Anime
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
-    network_mode: service:gluetun
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 60s
+        interval: 300s
         retries: 3
         start_period: 20s
         timeout: 10s
@@ -151,6 +159,7 @@ services:
     image: lscr.io/linuxserver/radarr:${VERSIONTAG_RADARR}
     container_name: radarr
     restart: unless-stopped
+    network_mode: service:gluetun
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -162,10 +171,9 @@ services:
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
       - ${GLOBAL_MEDIA_ANIME}:/data/Anime
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
-    network_mode: service:gluetun
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 60s
+        interval: 300s
         retries: 3
         start_period: 20s
         timeout: 10s
@@ -175,22 +183,22 @@ services:
   seerr:
     image: ghcr.io/seerr-team/seerr:${VERSIONTAG_SEERR}
     container_name: seerr
+    restart: unless-stopped
+    ports:
+      - 5055:5055
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/jellyseerr/config:/app/config
-    restart: unless-stopped
-    ports:
-      - 5055:5055
 
   cleanuparr:
     image: ghcr.io/cleanuparr/cleanuparr:${VERSIONTAG_CLEANUPARR}
     container_name: cleanuparr
     restart: unless-stopped
-    volumes:
-      - ${GLOBAL_DOCKERROOTPATH}/cleanuparr/config:/config
+    ports:
+      - 11011:11011
     environment:
       - PORT=11011
       - BASE_PATH=
@@ -198,5 +206,5 @@ services:
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
       - UMASK=022
-    ports:
-      - 11011:11011
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/cleanuparr/config:/config
