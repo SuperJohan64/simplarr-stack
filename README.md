@@ -34,18 +34,11 @@ OR
 
 ## Getting Started
 
-1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
+1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
-3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
-4. Ensure you have a Plex or Jellyfin server running before you create your ARR-Stack.
+3. Rename the `.env.EXAMPLE` file to `.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 
 ## Building the Containers
-
-Each `.yml` file requires a matching `.env` file in the same folder when you run your Docker commands.
-
-You can find the starter templates in the `.env` Templates directory. Copy the template you need, update the values, and rename the file to `.env`.
-
-Once both the `.yml` and `.env` files are in the same folder, open your terminal, navigate to that directory, and run the Docker build commands listed below to create the containers.
 
 ### Jellyfin
 
@@ -55,7 +48,7 @@ To create a Jellyfin container run:
 docker compose -f jellyfin.yml --env-file jellyfin.env up -d
 ```
 
-Or if you have a Nvidia GPU run:
+To create a Jellyfin container with Nvidia GPU support run:
 
 ```bash
 docker compose -f jellyfin-nvidia.yml --env-file jellyfin.env up -d
@@ -69,7 +62,7 @@ To create a Plex container run:
 docker compose -f plex.yml --env-file plex.yml.env up -d
 ```
 
-Or if you have a Nvidia GPU run:
+To create a Plex container with Nvidia GPU support run:
 
 ```bash
 docker compose -f plex-nvidia.yml --env-file plex.yml.env up -d
