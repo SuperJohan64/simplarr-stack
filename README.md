@@ -68,7 +68,7 @@ To create a Plex container with Nvidia GPU support run:
 docker compose -f plex-nvidia.yml --env-file plex.env up -d
 ```
 
-## ARR-Stack
+### ARR-Stack
 
 To create your ARR-Stack run:
 
@@ -76,7 +76,7 @@ To create your ARR-Stack run:
 docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
 ```
 
-## Extra Tools
+### Extra Tools
 
 If you want to run Watchtower to update your containers dialy run:
 
