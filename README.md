@@ -59,13 +59,13 @@ docker compose -f jellyfin-nvidia.yml --env-file jellyfin.env up -d
 To create a Plex container run:
 
 ```bash
-docker compose -f plex.yml --env-file plex.yml.env up -d
+docker compose -f plex.yml --env-file plex.env up -d
 ```
 
 To create a Plex container with Nvidia GPU support run:
 
 ```bash
-docker compose -f plex-nvidia.yml --env-file plex.yml.env up -d
+docker compose -f plex-nvidia.yml --env-file plex.env up -d
 ```
 
 ## ARR-Stack
