@@ -250,13 +250,13 @@ docker logs qbittorrent
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
-    - **Gotify Server**: `http://localhost:80`
-    - **App Token**: *Create an app token with steps below*
-      - Open: `http://<ip>:8880`
-        - `Apps > Create Application`
-          - **Name**: `Sonarr`
-            - Copy the app token
-    - Click **Test** and verify that the notifications are enabled
+      - **Gotify Server**: `http://localhost:80`
+      - **App Token**: *Create an app token with steps below*
+        - Open: `http://<ip>:8880`
+          - `Apps > Create Application`
+            - **Name**: `Sonarr`
+              - Copy the app token
+      - Click **Test** and verify that the notifications are enabled
 
 ## Radarr
 
@@ -313,13 +313,13 @@ docker logs qbittorrent
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
-    - **Gotify Server**: `http://localhost:80`
-    - **App Token**: *Create an app token with steps below*
-      - Open: `http://<ip>:8880`
-        - `Apps > Create Application`
-          - **Name**: `Radarr`
-            - Copy the app token
-    - Click **Test** and verify that the notifications are enabled
+      - **Gotify Server**: `http://localhost:80`
+      - **App Token**: *Create an app token with steps below*
+        - Open: `http://<ip>:8880`
+          - `Apps > Create Application`
+            - **Name**: `Radarr`
+              - Copy the app token
+      - Click **Test** and verify that the notifications are enabled
 
 ## Prowlarr
 
