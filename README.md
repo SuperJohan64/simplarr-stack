@@ -1,6 +1,6 @@
 # Simplarr-Stack
 
-This project guides you in building an ARR Stack with Plex or Jellyfin in Docker, focusing on configuring the ARR apps. It does not cover Plex, Jellyfin, or other app configurations, as preferences vary.
+This project guides you in building an ARR-Stack with Plex or Jellyfin in Docker, focusing on configuring the ARR apps. It does not cover Plex, Jellyfin, or other app configurations, as preferences vary.
 
 It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic from public trackers. If you're not a NordVPN user and want to use another VPN provider, you'll need to adjust the Gluetun configuration in the `arr.yml` file. For instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 
@@ -14,7 +14,7 @@ OR
 
 * **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free media server that supports hardware (GPU) transcoding.
 
-### arr-stack Containers
+### ARR-Stack
 
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts unhealthy containers.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
@@ -25,8 +25,8 @@ OR
 * **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
 * **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
 * **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
-* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
 * **[Seerr](https://github.com/seerr-team/seerr)**: A front-end for managing media library requests.
+* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
 
 ### Optional Tools
 
@@ -37,7 +37,7 @@ OR
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
 3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
-4. Ensure you have a Plex or Jellyfin server running before you create your ARR Stack.
+4. Ensure you have a Plex or Jellyfin server running before you create your ARR-Stack.
 
 ## Building the Containers
 
@@ -75,9 +75,9 @@ Or if you have a Nvidia GPU run:
 docker compose -f plex-nvidia.yml --env-file plex.yml.env up -d
 ```
 
-## ARR Stack
+## ARR-Stack
 
-To create your ARR Stack run:
+To create your ARR-Stack run:
 
 ```bash
 docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
