@@ -24,3 +24,10 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
       - 32469:32469
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]

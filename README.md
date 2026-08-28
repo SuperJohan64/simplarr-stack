@@ -6,18 +6,7 @@ It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent
 
 ## Included Containers
 
-* **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
-* **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts unhealthy containers.
-* **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
-* **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A proxy that completes Cloudflare challenges.
-* **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
-* **[Prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/)**: Manages torrent indexers.
-* **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
-* **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
-* **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
-* **[Seerr](https://github.com/seerr-team/seerr)**: A front-end for managing media library requests.
-
-AND
+### Media Servers
 
 * **[Plex](https://docs.linuxserver.io/images/docker-plex/)**: A premium media server that requires a paid license for extra features such as hardware (GPU) transcoding and remote access.
 
@@ -25,31 +14,80 @@ OR
 
 * **[Jellyfin](https://docs.linuxserver.io/images/docker-jellyfin/)**: A free media server that supports hardware (GPU) transcoding.
 
+### arr-stack Containers
+
+* **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts unhealthy containers.
+* **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
+* **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A proxy that completes Cloudflare challenges.
+* **[Gotify](https://github.com/gotify/server)**: A simple notification app for your alerts.
+* **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
+* **[Prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/)**: Manages torrent indexers.
+* **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
+* **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
+* **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
+* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
+* **[Seerr](https://github.com/seerr-team/seerr)**: A front-end for managing media library requests.
+
+### Optional Tools
+
+* **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
+
 ## Getting Started
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
 3. Rename `simplarr-stack.env.EXAMPLE` to `simplarr-stack.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
-4. If you're not using a Nvidia GPU with Plex or Jellyfin, open their `.yml` files and delete the lines that enable GPU support.
 
 ## Building the Containers
 
-For an ARR stack with Plex run:
+Each .yml file requires a matching .env file in the same folder when you run your Docker commands.
+
+You can find the starter templates in the .env Templates directory. Copy the template you need, update the values, and rename the file to .env.
+
+Once both the .yml and .env files are in the same folder, open your terminal, navigate to that directory, and run the Docker build commands listed below to create the containers.
+
+### Jellyfin
+
+To create a Jellyfin container run:
 
 ```bash
-docker compose -f arr.yml -f plex.yml --env-file simplarr-stack.env up -d
+docker compose -f jellyfin.yml --env-file jellyfin.env up -d
 ```
 
-For an ARR stack with Jellyfin run:
+Or if you have a Nvidia GPU run:
 
 ```bash
-docker compose -f arr.yml -f jellyfin.yml --env-file simplarr-stack.env up -d
+docker compose -f jellyfin-nvidia.yml --env-file jellyfin.env up -d
 ```
 
-Or for just the ARR stack run:
+### Plex
+
+To create a Plex container run:
 
 ```bash
-docker compose -f arr.yml --env-file simplarr-stack.env up -d
+docker compose -f plex.yml --env-file plex.yml.env up -d
+```
+
+Or if you have a Nvidia GPU run:
+
+```bash
+docker compose -f plex-nvidia.yml --env-file plex.yml.env up -d
+```
+
+## ARR Stack
+
+To create your ARR Stack run:
+
+```bash
+docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
+```
+
+## Extra Tools
+
+If you want to run Watchtower to update your containers dialy run:
+
+```bash
+docker compose -f watchtower.yml --env-file watchtower.env up -d
 ```
 
 # Container Configuration
@@ -339,9 +377,9 @@ docker logs qbittorrent
   - Expand **Slow Download Rules**
     - Click **Add Rule**
       - **Name**: `Slow Rule`
-      - **Max Strikes**: `7`
-      - **Min Speed**: `5 KB/s`
-      - **Maximum Time (Hours)**: `48`
+      - **Max Strikes**: `3`
+      - **Min Speed**: `10 KB/s`
+      - **Maximum Time (Hours)**: `2`
       - Click **Create**
   - Click **Save Settings**
 

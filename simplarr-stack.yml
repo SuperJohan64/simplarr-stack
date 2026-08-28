@@ -1,26 +1,5 @@
 services:
 
-  watchtower:
-    image: nickfedor/watchtower:${VERSIONTAG_WATCHTOWER}
-    container_name: watchtower
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - WATCHTOWER_DISABLE_CONTAINERS=
-      - WATCHTOWER_SCHEDULE=${WATCHTOWER_SCHEDULE}
-      - TZ=${GLOBAL_TIMEZONE}
-      - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_INCLUDE_RESTARTING=false
-      - WATCHTOWER_INCLUDE_STOPPED=false
-      - WATCHTOWER_REVIVE_STOPPED=false
-      - WATCHTOWER_TIMEOUT=30s
-      - WATCHTOWER_NOTIFICATIONS=shoutrrr
-      - WATCHTOWER_NOTIFICATION_URL=${WATCHTOWER_NOTIFICATION_URL}
-    # You can remove the command section and all the apps listed under it to have Watchtower update all containers running in Docker on your server.
-    command:
-      - ${WATCHTOWERCONTAINERS}
-
   deunhealth:
     image: qmcgaw/deunhealth:${VERSIONTAG_DEUNHEALTH}
     container_name: deunhealth
@@ -40,13 +19,14 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - 8080:8080 # qbittorrent web interface
-      - 8191:8191 # flaresolverr
-      - 8989:8989 # sonarr
-      - 7878:7878 # radarr
-      - 9696:9696 # prowlarr
+      - 8080:8080   # qbittorrent web interface
+      - 8191:8191   # flaresolverr
+      - 8989:8989   # sonarr
+      - 7878:7878   # radarr
+      - 9696:9696   # prowlarr
+      - 8880:80     # gotify
     environment:
-      - VPN_SERVICE_PROVIDER=nordvpn
+      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - VPN_TYPE=openvpn
       - OPENVPN_USER=${VPN_USER}
       - OPENVPN_PASSWORD=${VPN_PASSWORD}
@@ -74,6 +54,27 @@ services:
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/flaresolverr/config:/config
+    healthcheck:
+        test: ping -c 1 www.google.com || exit 1
+        interval: 300s
+        retries: 3
+        start_period: 20s
+        timeout: 10s
+    labels:
+      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
+
+  gotify:
+    image: gotify/server:${VERSIONTAG_GOTIFY}
+    container_name: gotify
+    restart: unless-stopped
+    network_mode: service:gluetun
+    environment:
+      - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
+      - PUID=${GLOBAL_PUID}
+      - PGID=${GLOBAL_PGID}
+      - TZ=${GLOBAL_TIMEZONE}
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/gotify/gotify_data:/app/data
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
         interval: 300s
@@ -208,3 +209,14 @@ services:
       - UMASK=022
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/cleanuparr/config:/config
+
+  maintainerr:
+    image: ghcr.io/maintainerr/maintainerr:${VERSIONTAG_MAINTAINERR}
+    container_name: maintainerr
+    restart: unless-stopped
+    ports:
+      - 6246:6246
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/maintainerr/data:/opt/data
+    environment:
+      - TZ=${GLOBAL_TIMEZONE}
