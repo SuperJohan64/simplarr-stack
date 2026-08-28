@@ -106,7 +106,12 @@ docker compose -f watchtower.yml --env-file watchtower.env up -d
 
 ## Gotify
 
-Place holder
+### 1. Access the Web UI
+- Open: `http://<ip>:8880`
+  - login with the username *admin* and the password in your `.env` file.
+  - Verify you can login and reach `Apps > Create Application`.
+
+You will need to setup each app in Gotify for your notifications. This will be covered in later steps.
 
 ## qBittorrent
 
@@ -203,7 +208,7 @@ docker logs qbittorrent
   - Check `Unmonitor Deleted Episodes`
   - Click **Save Changes**
 
-### 5. Custom Formats and Profiles for Shows
+### 5a. Custom Formats and Profiles for Shows
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
     - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
@@ -221,7 +226,7 @@ docker logs qbittorrent
         - **x265**: `1`
       - Click **Save**
 
-### 6. Custom Formats and Profiles for Anime (Optional)
+### 5b. Custom Formats and Profiles for Anime (Optional)
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
   - Import the `Erai-Raws Custom Format.json`, `Erai-Raws Perferred Subs.json`, `Erai-Raws Preferred Audio Language.json` and `SubsPlease HorribleSubs Custom Format.json` Custom Formats
@@ -239,6 +244,19 @@ docker logs qbittorrent
       - **Erai-Raws Custom Format**: `11`
       - **SubsPlease/HorribleSubs Releases Custom Format**: `10`
       - **x265**: `1`
+
+### 6. Alerts
+
+- `Settings > Connect`
+  - **+ Add**
+    - Click **Gotify**
+    - **Gotify Server**: `http://localhost:80`
+    - **App Token**: *Create an app token with steps below*
+      - Open: `http://<ip>:8880`
+        - `Apps > Create Application`
+          - **Name**: `Sonarr`
+            - Copy the app token
+    - Click **Test** and verify that the notifications are enabled
 
 ## Radarr
 
@@ -289,6 +307,19 @@ docker logs qbittorrent
       - **5.1 Surround**: `2`
       - **x265**: `1`
     - Click **Save**
+
+### 6. Alerts
+
+- `Settings > Connect`
+  - **+ Add**
+    - Click **Gotify**
+    - **Gotify Server**: `http://localhost:80`
+    - **App Token**: *Create an app token with steps below*
+      - Open: `http://<ip>:8880`
+        - `Apps > Create Application`
+          - **Name**: `Radarr`
+            - Copy the app token
+    - Click **Test** and verify that the notifications are enabled
 
 ## Prowlarr
 
