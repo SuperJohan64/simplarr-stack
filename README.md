@@ -355,6 +355,19 @@ docker logs qbittorrent
     - Click **Test** then **Save**
     - Repeat these steps for **Radarr**
 
+### 4. Alerts
+
+- `Settings > Notificiations`
+  - **+ Add**
+    - Click **Gotify**
+      - **Gotify Server**: `http://localhost:80`
+      - **App Token**: *Create an app token with steps below*
+        - Open: `http://<ip>:8880`
+          - `Apps > Create Application`
+            - **Name**: `Prowlarr`
+              - Copy the app token
+      - Click **Test** and verify that the notifications are enabled
+
 ## Cleanuparr
 
 ### 1. Upload Blacklist
