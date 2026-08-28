@@ -52,25 +52,11 @@ The containers will map `Media` to `/data/`, allowing you to access these direct
 
 ## Getting Started
 
-1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
+1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will need Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
 3. Rename the `.env.EXAMPLE` file to `.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 
 ## Building the Containers
-
-### Jellyfin
-
-To create a Jellyfin container run:
-
-```bash
-docker compose -f jellyfin.yml --env-file jellyfin.env up -d
-```
-
-To create a Jellyfin container with Nvidia GPU support run:
-
-```bash
-docker compose -f jellyfin-nvidia.yml --env-file jellyfin.env up -d
-```
 
 ### Plex
 
@@ -86,6 +72,20 @@ To create a Plex container with Nvidia GPU support run:
 docker compose -f plex-nvidia.yml --env-file plex.env up -d
 ```
 
+### Jellyfin
+
+To create a Jellyfin container run:
+
+```bash
+docker compose -f jellyfin.yml --env-file jellyfin.env up -d
+```
+
+To create a Jellyfin container with Nvidia GPU support run:
+
+```bash
+docker compose -f jellyfin-nvidia.yml --env-file jellyfin.env up -d
+```
+
 ### ARR-Stack
 
 To create your ARR-Stack run:
@@ -96,7 +96,7 @@ docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
 
 ### Extra Tools
 
-If you want to run Watchtower to update your containers dialy run:
+If you want Watchtower to update your containers dialy run:
 
 ```bash
 docker compose -f watchtower.yml --env-file watchtower.env up -d
