@@ -192,7 +192,7 @@ services:
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
-      - ${GLOBAL_DOCKERROOTPATH}/jellyseerr/config:/app/config
+      - ${GLOBAL_DOCKERROOTPATH}/seerr/config:/app/config
 
   cleanuparr:
     image: ghcr.io/cleanuparr/cleanuparr:${VERSIONTAG_CLEANUPARR}
