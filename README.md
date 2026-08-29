@@ -251,14 +251,14 @@ docker logs qbittorrent
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
+      - Uncheck `On Grab`
+      - Uncheck `On File Import`
       - **Gotify Server**: `http://localhost:80`
       - **App Token**: *Create an app token with steps below*
         - Open: `http://<ip>:8880`
           - `Apps > Create Application`
             - **Name**: `Sonarr`
               - Copy the app token
-            - Uncheck `On Grab`
-            - Uncheck `On File Import`
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Radarr
@@ -315,14 +315,14 @@ docker logs qbittorrent
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
+      - Uncheck `On Grab`
+      - Uncheck `On File Import`
       - **Gotify Server**: `http://localhost:80`
       - **App Token**: *Create an app token with steps below*
         - Open: `http://<ip>:8880`
           - `Apps > Create Application`
             - **Name**: `Radarr`
               - Copy the app token
-            - Uncheck `On Grab`
-            - Uncheck `On File Import`
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Prowlarr
