@@ -246,7 +246,6 @@ docker logs qbittorrent
       - **x265**: `1`
 
 ### 6. Alerts
-
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
@@ -256,7 +255,9 @@ docker logs qbittorrent
           - `Apps > Create Application`
             - **Name**: `Sonarr`
               - Copy the app token
-      - Click **Test** and verify that the notifications are enabled
+            - Uncheck `On Grab`
+            - Uncheck `On File Import`
+      - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Radarr
 
@@ -309,7 +310,6 @@ docker logs qbittorrent
     - Click **Save**
 
 ### 6. Alerts
-
 - `Settings > Connect`
   - **+ Add**
     - Click **Gotify**
@@ -319,7 +319,9 @@ docker logs qbittorrent
           - `Apps > Create Application`
             - **Name**: `Radarr`
               - Copy the app token
-      - Click **Test** and verify that the notifications are enabled
+            - Uncheck `On Grab`
+            - Uncheck `On File Import`
+      - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Prowlarr
 
@@ -356,7 +358,6 @@ docker logs qbittorrent
     - Repeat these steps for **Radarr**
 
 ### 4. Alerts
-
 - `Settings > Notificiations`
   - **+ Add**
     - Click **Gotify**
@@ -366,7 +367,7 @@ docker logs qbittorrent
           - `Apps > Create Application`
             - **Name**: `Prowlarr`
               - Copy the app token
-      - Click **Test** and verify that the notifications are enabled
+      - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Cleanuparr
 
@@ -422,6 +423,7 @@ docker logs qbittorrent
       - **Max Strikes**: `3`
       - **Min Speed**: `10 KB/s`
       - **Maximum Time (Hours)**: `2`
+      - Check **Reset Strikes on Progress**
       - Click **Create**
   - Click **Save Settings**
 
@@ -433,6 +435,18 @@ docker logs qbittorrent
       - **Blocklist Path**: `/config/cleanuparr-blacklist.txt`
     - Repeat for **Radarr Settings**
   - Click **Save Settings**
+
+### 6. Notifications
+- `Notifications > Add Provider`
+  - Click **Gotify**
+    - **Name**: `Gotify`
+    - **Server URL**: `http://<ip>:80`
+    - **App Token**: *Create an app token with steps below*
+      - Open: `http://<ip>:8880`
+        - `Apps > Create Application`
+          - **Name**: `Cleanuparr`
+          - Copy the app token
+      - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Seerr
 
@@ -485,6 +499,17 @@ docker logs qbittorrent
   - **Discover Language**: `English` and `Japanese` (Japnese for anime)
   - Check `Hide Available Media`
   - Click **Save Changes**
+
+### 3. Notifications
+- `Notifications > Gotify`
+  - Check **Enable Agent**
+  - **Server URL**: `http://<ip>:8880`
+  - **Application Token**: *Create an app token with steps below*
+    - Open: `http://<ip>:8880`
+      - `Apps > Create Application`
+        - **Name**: `Cleanuparr`
+        - Copy the app token
+  - Check all the **Notifications Types** click **Test** then **Save Changes**
 
 ## Maintainerr
 
