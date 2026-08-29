@@ -254,11 +254,7 @@ docker logs qbittorrent
       - Uncheck `On Grab`
       - Uncheck `On File Import`
       - **Gotify Server**: `http://localhost:80`
-      - **App Token**: *Create an app token with steps below*
-        - Open: `http://<ip>:8880`
-          - `Apps > Create Application`
-            - **Name**: `Sonarr`
-              - Copy the app token
+      - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Sonarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Radarr
@@ -318,11 +314,7 @@ docker logs qbittorrent
       - Uncheck `On Grab`
       - Uncheck `On File Import`
       - **Gotify Server**: `http://localhost:80`
-      - **App Token**: *Create an app token with steps below*
-        - Open: `http://<ip>:8880`
-          - `Apps > Create Application`
-            - **Name**: `Radarr`
-              - Copy the app token
+      - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Radarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Prowlarr
@@ -364,11 +356,7 @@ docker logs qbittorrent
   - **+ Add**
     - Click **Gotify**
       - **Gotify Server**: `http://localhost:80`
-      - **App Token**: *Create an app token with steps below*
-        - Open: `http://<ip>:8880`
-          - `Apps > Create Application`
-            - **Name**: `Prowlarr`
-              - Copy the app token
+      - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Prowlarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Cleanuparr
@@ -383,20 +371,20 @@ docker logs qbittorrent
 - `Media Apps > Sonarr`
   - Click **Add Instance**
     - **Name**: `Sonarr`
-    - **URL**: `http://<ip>:8989`
+    - **URL**: `http://gluetun:8989`
     - **API Key**: copy from `Sonarr > Settings > General > API Key`
     - Click **Save**
 - `Media Apps > Radarr`
   - Click **Add Instance**
     - **Name**: `Radarr`
-    - **URL**: `http://<ip>:7878`
+    - **URL**: `http://gluetun:7878`
     - **API Key**: copy from `Radarr > Settings > General > API Key`
     - Click **Save**
 - `Media Apps > Download Clients`
   - Click **Add Client**
     - **Name**:: `qBittorrent`
     - **Client Type**: `qBittorrent`
-    - **Host**: `http://<ip>:8080>`
+    - **Host**: `http://gluetun:8080`
     - **Username**: qBittorrent's Username
     - **Password**: qBittorrent's Password
       - Change the qBittorrent username/password in `qBittorrent > Tools > Options > WebUI > Authentication > Username/Password`
@@ -439,12 +427,8 @@ docker logs qbittorrent
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
-    - **Server URL**: `http://<ip>:80`
-    - **App Token**: *Create an app token with steps below*
-      - Open: `http://<ip>:8880`
-        - `Apps > Create Application`
-          - **Name**: `Cleanuparr`
-          - Copy the app token
+    - **Server URL**: `http://gluetun:80`
+    - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Cleanuparr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Seerr
@@ -460,7 +444,7 @@ docker logs qbittorrent
     - Click `Add Radarr Server`
       - Check `Default Server`
       - **Server Name**: `Radarr`
-      - **Hostname or IP Address**: `Your.I.P.Address`
+      - **Hostname or IP Address**: `gluetun`
       - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
       - Click `Test` at bottom of page
       - **Quality Profile**: `HD-1080p`
@@ -471,7 +455,7 @@ docker logs qbittorrent
     - Click `Add Sonarr Server`
       - Check `Default Server`
       - **Server Name**: `Sonarr`
-      - **Hostname or IP Address**: `Your.I.P.Address`
+      - **Hostname or IP Address**: `gluetun`
       - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
       - Click `Test` at bottom of page
       - **Series Type**: `Standard`
@@ -502,14 +486,90 @@ docker logs qbittorrent
 ### 3. Notifications
 - `Notifications > Gotify`
   - Check **Enable Agent**
-  - **Server URL**: `http://<ip>:8880`
-  - **Application Token**: *Create an app token with steps below*
-    - Open: `http://<ip>:8880`
-      - `Apps > Create Application`
-        - **Name**: `Cleanuparr`
-        - Copy the app token
+  - **Server URL**: `http://gluetun:80`
+  - **Application Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Seerr` and copy the token
   - Check all the **Notifications Types** click **Test** then **Save Changes**
 
 ## Maintainerr
 
-Placeholder
+### 1. Setup Media Server
+- Open `http://<ip>:6246`
+  - `Choose Server Type`
+    - For Jellyfin
+      - **Jellyfin URL**: `http://jellyfin:8096`
+      - **API Key**
+        - Go to `http://<ip>:8096 > Dashboard > API Keys` and create a new API key named **Maintainerr**
+        - Copy the API Key
+      - Click **Test Connection** and **Save Changes**
+
+### 2. Setup Sonarr & Radarr
+- Open `http://<ip>:6246 > Settings > Sonarr`
+  - `Add Server`
+    - **Server Name**: `Sonarr`
+    - **Hostname or IP**: `gluetun`
+    - **Port**: `8989`
+    - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
+- Open `http://<ip>:6246 > Settings > Radarr`
+  - `Add Server`
+    - **Server Name**: `Radarr`
+    - **Hostname or IP**: `gluetun`
+    - **Port**: `7878`
+    - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
+
+### 3. Notifications
+- Open `http://<ip>:6246 > Settings > Notifications`
+  - `Add Agent`
+    - **Name**: `Gotify`
+    - Check `Enabled`
+    - **Agent**: `Gotify`
+    - **URL**: `http://gluetun:80`
+    - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
+    - Check all `Types` boxes
+    - Click **Test Connection** and **Save Changes**
+
+### 4. Rules
+- Open `http://<ip>:6246 > Rules`
+  - Click `New Rule`
+    - **Name**: `Movies Leaving Soon`
+    - **Library**: `Movies`
+    - **Radarr server**: `Radarr`
+    - **Radarr action**: `Unmonitor and delete files`
+    - Under **Notifications** click `Configure`
+      - Check the box for your notification agent
+    - Scroll down to the **Rules** section
+      - `Section #1 > Rule #1`
+        - **Select First Value**: `Radarr - [list] Tags`
+        - **Action**: `Contains (All items)`
+        - **Select Second Value...**: `Text`
+        - **Custom Value**: `temp`
+    - Scroll to bottom of the page and click **Save**
+  - Click `New Rule`
+    - **Name**: `Episodes Leaving Soon`
+    - **Library**: `Shows`
+    - **Media type**: `Episodes`
+    - **Sonarr server**: `Sonarr`
+    - **Sonarr action**: `Unmonitor and delete files`
+    - Under **Notifications** click `Configure`
+      - Check the box for your notification agent
+    - Scroll down to the **Rules** section
+      - `Section #1 > Rule #1`
+        - **Select First Value**: `Sonarr - [list] Tags (show)`
+        - **Action**: `Contains (All items)`
+        - **Select Second Value...**: `Text`
+        - **Custom Value**: `temp`
+    - Scroll to bottom of the page and click **Save**
+  - Click `New Rule`
+    - **Name**: `Anime Leaving Soon`
+    - **Library**: `Anime`
+    - **Media type**: `Episodes`
+    - **Sonarr server**: `Sonarr`
+    - **Sonarr action**: `Unmonitor and delete files`
+    - Under **Notifications** click `Configure`
+      - Check the box for your notification agent
+    - Scroll down to the **Rules** section
+      - `Section #1 > Rule #1`
+        - **Select First Value**: `Sonarr - [list] Tags (show)`
+        - **Action**: `Contains (All items)`
+        - **Select Second Value...**: `Text`
+        - **Custom Value**: `temp`
+    - Scroll to bottom of the page and click **Save**
