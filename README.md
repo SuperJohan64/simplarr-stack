@@ -104,6 +104,8 @@ docker compose -f watchtower.yml --env-file watchtower.env up -d
 
 # Container Configuration
 
+Next, configure your media server and ARR-stack applications with the settings below.
+
 ## Gotify
 
 ### 1. Access the Web UI
@@ -111,7 +113,7 @@ docker compose -f watchtower.yml --env-file watchtower.env up -d
   - login with the username *admin* and the password in your `.env` file.
   - Verify you can login and reach `Apps > Create Application`.
 
-You will need to setup each app in Gotify for your notifications. This will be covered in later steps.
+You will need to setup each app in Gotify to receive notifications. This will be covered in later steps.
 
 ## qBittorrent
 
