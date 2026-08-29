@@ -373,16 +373,13 @@ docker logs qbittorrent
 
 ## Cleanuparr
 
-### 1. Upload Blacklist
-- Copy the `cleanuparr-blacklist.txt` to Cleanuparr's config folder (GLOBAL_DOCKERROOTPATH/cleanuparr/config)
-
-### 2. Access the Web UI
+### 1. Access the Web UI
 - Open: `http://<ip>:11011`
   - Change your username and password
     - Configuring MFA and Plex is not required.
 -Once logged in toggle `Performance mode` in top right hand corner.
 
-### 3. Add Media Apps
+### 2. Add Media Apps
 - `Media Apps > Sonarr`
   - Click **Add Instance**
     - **Name**: `Sonarr`
@@ -404,7 +401,7 @@ docker logs qbittorrent
     - **Password**: qBittorrent's Password
       - Change the qBittorrent username/password in `qBittorrent > Tools > Options > WebUI > Authentication > Username/Password`
 
-### 4. Enable Queue Cleaner
+### 3. Enable Queue Cleaner
 - `Settings > Queue Cleaner`
   - Check **Enabled**
   - Expand **Failed Import Settings**
@@ -429,16 +426,16 @@ docker logs qbittorrent
       - Click **Create**
   - Click **Save Settings**
 
-### 5. Malware Blocker
+### 4. Malware Blocker
 - `Settings > Malware Blocker`
   - Check **Enabled**
     - Expand **Arr Blocklists**
       - Check **Sonarr > Enabled**
-      - **Blocklist Path**: `/config/cleanuparr-blacklist.txt`
+      - **Blocklist Path**: `https://raw.githubusercontent.com/SuperJohan64/simplarr-stack/refs/heads/main/cleanuparr-blacklist.txt`
     - Repeat for **Radarr Settings**
   - Click **Save Settings**
 
-### 6. Notifications
+### 5. Notifications
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
