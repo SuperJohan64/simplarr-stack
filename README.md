@@ -428,7 +428,22 @@ docker logs qbittorrent
     - Repeat for **Radarr Settings**
   - Click **Save Settings**
 
-### 5. Notifications
+### 5. Seeker
+- `Settings > Seeker`
+  - **Search Settings**
+    - Toggle `Search Enabled`
+    - **Search Interval**: `6 hours`
+  - **Proactive Search**
+    - Toggle `Proactive Search`
+    - **Post-Release Grace Period (hours)**: `24`
+  - **Instances**
+    - **Sonarr**
+      - Toggle `Monitored Only`
+    - **Radarr**
+      - Toggle `Monitored Only`
+  Click **Save Settings**
+
+### 6. Notifications
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
