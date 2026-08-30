@@ -330,6 +330,7 @@ docker logs qbittorrent
   - Click the **+** and select **FlareSolverr**
   - **Tags**: `flaresolverr`
     - Press tab after you finish typing to complete the tag
+    - *If this step times out you need to restart Gluetun, Flaresolverr, and then Prowlarr's containers in that order until it comples the challenge*
   - Click **Save** 
 
 ### 2. Add Indexers
