@@ -54,7 +54,7 @@ The containers will map `Media` to `/data/`, allowing you to access these direct
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will need Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
 2. Make sure the system you're running containers on has a static IP. Sometimes you won’t be able to reach your apps using localhost or 127.0.0.1, so you’ll need to connect using the system’s IP address instead.
-3. Rename the `.env.EXAMPLE` file to `.env` and edit the details inside for your deployment. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
+3. Rename the `.env.EXAMPLE` files to `.env` and edit the details inside. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 
 ## Building the Containers
 
@@ -249,7 +249,7 @@ docker logs qbittorrent
 
 ### 6. Alerts
 - `Settings > Connect`
-  - **+ Add**
+  - Click **+ Add**
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
@@ -309,7 +309,7 @@ docker logs qbittorrent
 
 ### 6. Alerts
 - `Settings > Connect`
-  - **+ Add**
+  - Click **+ Add**
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
@@ -353,7 +353,7 @@ docker logs qbittorrent
 
 ### 4. Alerts
 - `Settings > Notificiations`
-  - **+ Add**
+  - Click **+ Add**
     - Click **Gotify**
       - **Gotify Server**: `http://localhost:80`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Prowlarr` and copy the token
@@ -391,7 +391,10 @@ docker logs qbittorrent
 
 ### 3. Enable Queue Cleaner
 - `Settings > Queue Cleaner`
-  - Check **Enabled**
+  - General
+    - Check **Enabled**
+    - **Scheduled Unit**: `Minutes`
+    - **Every**: `20`
   - Expand **Failed Import Settings**
     - **Max Strikes**: `3`
     - **Pattern Mode**: `Exclude`
@@ -401,6 +404,7 @@ docker logs qbittorrent
     - Click **Add Rule**
       - **Name**: `Stall Rule`
       - **Max Strikes**: `3`
+      - **Privacy Type**: `Both`
       - Check **Reset Strikes on Progress**
       - **Minimum Porgress to reset**: `5KB`
       - Click **Create**
@@ -410,6 +414,7 @@ docker logs qbittorrent
       - **Max Strikes**: `3`
       - **Min Speed**: `10 KB/s`
       - **Maximum Time (Hours)**: `2`
+      - **Privacy Type**: `Both`
       - Check **Reset Strikes on Progress**
       - Click **Create**
   - Click **Save Settings**
