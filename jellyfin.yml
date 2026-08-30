@@ -27,4 +27,5 @@ services:
 
 networks:
   simplarr-stack_network:
+    name: simplarr-stack_network
     driver: bridge

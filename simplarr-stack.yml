@@ -15,7 +15,8 @@ services:
   gluetun:
     image: qmcgaw/gluetun:${VERSIONTAG_GLUETUN}
     container_name: gluetun
-    networks: simplarr-stack_network
+    networks: 
+      - simplarr-stack_network
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
@@ -185,7 +186,8 @@ services:
   seerr:
     image: ghcr.io/seerr-team/seerr:${VERSIONTAG_SEERR}
     container_name: seerr
-    networks: simplarr-stack_network
+    networks: 
+      - simplarr-stack_network
     restart: unless-stopped
     ports:
       - 5055:5055
@@ -199,7 +201,8 @@ services:
   cleanuparr:
     image: ghcr.io/cleanuparr/cleanuparr:${VERSIONTAG_CLEANUPARR}
     container_name: cleanuparr
-    networks: simplarr-stack_network
+    networks: 
+      - simplarr-stack_network
     restart: unless-stopped
     ports:
       - 11011:11011
@@ -216,7 +219,8 @@ services:
   maintainerr:
     image: ghcr.io/maintainerr/maintainerr:${VERSIONTAG_MAINTAINERR}
     container_name: maintainerr
-    networks: simplarr-stack_network
+    networks: 
+      - simplarr-stack_network
     restart: unless-stopped
     ports:
       - 6246:6246
@@ -227,4 +231,5 @@ services:
 
 networks:
   simplarr-stack_network:
+    name: simplarr-stack_network
     driver: bridge
