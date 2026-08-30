@@ -407,7 +407,7 @@ docker logs qbittorrent
       - **Max Strikes**: `3`
       - **Privacy Type**: `Both`
       - Check **Reset Strikes on Progress**
-      - **Minimum Porgress to reset**: `5KB`
+      - **Minimum Porgress to reset**: `1MB`
       - Click **Create**
   - Expand **Slow Download Rules**
     - Click **Add Rule**

@@ -2,6 +2,13 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:${VERSIONTAG_JELLYFIN}
     container_name: jellyfin
+    networks: simplarr-stack_network
+    restart: 'unless-stopped'
+    ports:
+      - 8096:8096 # The main port for Jellyfins's web interface (http://<IP>:8096/web)
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
     environment:
       - PUID=${GLOBAL_PUID}
       - PGID=${GLOBAL_PGID}
@@ -16,9 +23,7 @@ services:
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
       - ${GLOBAL_MEDIA_ANIME}:/data/Anime
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
-    ports:
-      - 8096:8096 # The main port for Jellyfins's web interface (http://<IP>:8096/web)
-      - 8920:8920 #optional
-      - 7359:7359/udp #optional
-      - 1900:1900/udp #optional
-    restart: 'unless-stopped'
+
+networks:
+  simplarr-stack_network:
+    driver: bridge
