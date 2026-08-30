@@ -2,6 +2,8 @@ services:
   plex:
     container_name: plex
     image: linuxserver/plex:${VERSIONTAG_PLEX}
+    networks: 
+      - ${SIMPLARR_NETWORK}
     restart: unless-stopped
     environment:
       - PUID=${GLOBAL_PUID}
@@ -31,3 +33,8 @@ services:
           - driver: nvidia
             count: all
             capabilities: [gpu]
+
+networks:
+  simplarr-stack_network:
+    name: ${SIMPLARR_NETWORK}
+    driver: bridge
