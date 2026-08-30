@@ -2,7 +2,8 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:${VERSIONTAG_JELLYFIN}
     container_name: jellyfin
-    networks: simplarr-stack_network
+    networks: 
+      simplarr-stack_network
     restart: 'unless-stopped'
     ports:
       - 8096:8096 # The main port for Jellyfins's web interface (http://<IP>:8096/web)
