@@ -532,7 +532,7 @@ docker logs qbittorrent
     - Check all `Types` boxes
     - Click **Test Connection** and **Save Changes**
 
-### 4. Rules
+### 4a. Rules - Movies Leaving Soon
 - Open `http://<ip>:6246 > Rules`
   - Click `New Rule`
     - **Name**: `Movies Leaving Soon`
@@ -548,6 +548,8 @@ docker logs qbittorrent
         - **Select Second Value...**: `Text`
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
+
+### 4b. Rules - Episodes Leaving Soon
   - Click `New Rule`
     - **Name**: `Episodes Leaving Soon`
     - **Library**: `Shows`
@@ -563,6 +565,8 @@ docker logs qbittorrent
         - **Select Second Value...**: `Text`
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
+
+### 4b. Rules - Anime Leaving Soon
   - Click `New Rule`
     - **Name**: `Anime Leaving Soon`
     - **Library**: `Anime`
