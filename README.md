@@ -218,6 +218,7 @@ docker logs qbittorrent
       - `Sonarr Season Packs.json`
       - `Sonarr Target 1080p File Size`
       - `x265.json`
+      - `Language Not Original.json`
   - Go to `Settings > Profile`
     - Select `HD-1080p`
       - **Minimum Custom Format Score**: `10`
@@ -226,6 +227,7 @@ docker logs qbittorrent
         - **Sonarr Target 1080p File Size**: `10`
         - **5.1 Surround**: `2`
         - **x265**: `1`
+        - **Language: Not Original**: `-10000`
       - Click **Save**
 
 ### 5b. Custom Formats and Profiles for Anime (Optional)
@@ -298,13 +300,16 @@ docker logs qbittorrent
     - `HDR.json`
     - `Radarr Target 1080p File Size.json`
     - `x265.json`
+    - `Language Not Original.json`
 - `Settings > Profile`
   - Select `HD-1080p`
     - **Minimum Custom Format Score**: `10`
+    - **Language**: `Any`
     - Under the **Custom Format**
       - **Radarr Target 1080p File Size**: `10`
       - **5.1 Surround**: `2`
       - **x265**: `1`
+      - **Language: Not Original**: `-10000`
     - Click **Save**
 
 ### 6. Alerts
