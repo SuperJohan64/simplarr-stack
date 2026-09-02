@@ -40,10 +40,10 @@ services:
       - /dev/net/tun:/dev/net/tun
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -57,11 +57,11 @@ services:
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/flaresolverr/config:/config
     healthcheck:
-        test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        test: ["CMD-SHELL", "curl -f -s https://www.google.com > /dev/null || exit 1"]
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -78,11 +78,11 @@ services:
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/gotify/gotify_data:/app/data
     healthcheck:
-        test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        test: ["CMD-SHELL", "curl -f -s https://www.google.com > /dev/null || exit 1"]
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -100,10 +100,10 @@ services:
       - ${GLOBAL_DOCKERROOTPATH}/prowlarr:/config
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -126,10 +126,10 @@ services:
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -151,10 +151,10 @@ services:
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
@@ -176,10 +176,10 @@ services:
       - ${GLOBAL_MEDIA_DOWNLOADS}:/data/Downloads
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
-        interval: 300s
-        retries: 3
-        start_period: 20s
-        timeout: 10s
+        interval: ${HEALTHCHECK_INTERVAL}
+        retries: ${HEALTHCHECK_RETRIES}
+        start_period: ${HEALTHCHECK_STARTPERIOD}
+        timeout: ${HEALTHCHECK_TIMEOUT}
     labels:
       deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
