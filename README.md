@@ -63,7 +63,7 @@ data/
 ## Getting Started
 
 1. Decide whether you want to use Plex or Jellyfin as your media server. If you don’t already have a Plex Pass lifetime subscription, Jellyfin is generally the recommended option. You will need Plex or Jellyfin deployed before the ARR-Stack to complete the setup.
-2. Ensure your host system uses a static IP address. Throughout this guide, service URLs will use the format `http://<ip>:port`.
+2. Ensure the system running your containers has a static IP address. Throughout this guide, service URLs will use the format `http://<ip>:port`.
 3. Rename the `.env.EXAMPLE` files to `.env` and edit the details inside. Some containers require `GLOBAL_PUID` and `GLOBAL_PGID` set to `1000` so changing it is not reccomended.
 
 ## Building the Containers
