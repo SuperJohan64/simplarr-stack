@@ -263,7 +263,7 @@ docker logs qbittorrent
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
-      - **Gotify Server**: `http://localhost:80`
+      - **Gotify Server**: `http://gotify:80`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Sonarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -323,7 +323,7 @@ docker logs qbittorrent
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
-      - **Gotify Server**: `http://localhost:80`
+      - **Gotify Server**: `http://gotify:80`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Radarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -366,7 +366,7 @@ docker logs qbittorrent
 - `Settings > Notificiations`
   - Click **+ Add**
     - Click **Gotify**
-      - **Gotify Server**: `http://localhost:80`
+      - **Gotify Server**: `http://gotify:80`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Prowlarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -458,7 +458,7 @@ docker logs qbittorrent
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
-    - **Server URL**: `http://gluetun:80`
+    - **Server URL**: `http://gotify:80`
     - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Cleanuparr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -517,7 +517,7 @@ docker logs qbittorrent
 ### 3. Notifications
 - `Notifications > Gotify`
   - Check **Enable Agent**
-  - **Server URL**: `http://gluetun:80`
+  - **Server URL**: `http://gotify:80`
   - **Application Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Seerr` and copy the token
   - Check all the **Notifications Types** click **Test** then **Save Changes**
 
@@ -553,7 +553,7 @@ docker logs qbittorrent
     - **Name**: `Gotify`
     - Check `Enabled`
     - **Agent**: `Gotify`
-    - **URL**: `http://gluetun:80`
+    - **URL**: `http://gotify:80`
     - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
     - Check all `Types` boxes
     - Click **Test Connection** and **Save Changes**

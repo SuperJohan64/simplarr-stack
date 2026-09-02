@@ -26,7 +26,6 @@ services:
       - 8989:8989   # sonarr
       - 7878:7878   # radarr
       - 9696:9696   # prowlarr
-      - 8880:80     # gotify
     environment:
       - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - VPN_TYPE=openvpn
@@ -70,7 +69,10 @@ services:
     image: gotify/server:${VERSIONTAG_GOTIFY}
     container_name: gotify
     restart: unless-stopped
-    network_mode: service:gluetun
+    networks: 
+      - simplarr-stack_network    
+    ports:
+      - 8880:80
     environment:
       - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
       - PUID=${GLOBAL_PUID}
@@ -78,14 +80,6 @@ services:
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/gotify/gotify_data:/app/data
-    healthcheck:
-        test: ["CMD-SHELL", "curl -f -s https://www.google.com > /dev/null || exit 1"]
-        interval: ${HEALTHCHECK_INTERVAL}
-        retries: ${HEALTHCHECK_RETRIES}
-        start_period: ${HEALTHCHECK_STARTPERIOD}
-        timeout: ${HEALTHCHECK_TIMEOUT}
-    labels:
-      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:${VERSIONTAG_PROWLARR}
