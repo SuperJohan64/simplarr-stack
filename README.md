@@ -144,26 +144,19 @@ docker logs qbittorrent
   - **Network interface**: `tun0`
   - **Option IP addresses to bind to**: `All IPv4 addresses`
 
-### 3. Privacy Settings
-- `Tools > Options > BitTorrent > Privacy`
+### 3. BitTorrent
+- `Tools > Options > BitTorrent` `Privacy`
   - **Encryption mode**: `Require encryption`
   - Check `Enable anonymous mode`
-
-### 4. Torrent Queueing
 - `Tools > Options > BitTorrent > Torrent Queueing`
-  - **Maximum active downloads**: `15`
-  - **Maximum active uploads**: `15`
-  - **Maximum active torrents**: `15`
   - Check `Do not count slow torrents in these limits`
-
-### 5. Seeding Limits
 - `Tools > Options > BitTorrent > Seeding Limits`
   - Check **When ratio reaches**: `0`
   - Check **When total seeding time reaches**: `0 minutes`
   - Check **When inactive seeding time reaches**: `0 minutes`
   - **Action** `Stop torrent`
 
-### 6. Download Management
+### 4. Download Management
 - `Tools > Options > Downloads > When adding a torrent`
   - Check `Delete .torrent files afterwards`
 - `Tools > Options > Downloads > Saving Management`
@@ -175,7 +168,7 @@ docker logs qbittorrent
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 
-### 7. Reverse Proxy (Optional)
+### 5. Reverse Proxy (Optional)
 *Note if you don't have a reverse proxy (not included in this guide) you can skip this step.* 
  - `Tools > Options > Web UI > Authentication`
   - Check `Enable reverse proxy support`
