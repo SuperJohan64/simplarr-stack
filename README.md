@@ -343,14 +343,14 @@ docker logs qbittorrent
     - *If this step times out you need to restart Gluetun, Flaresolverr, and then Prowlarr's containers in that order until it comples the challenge*
   - Click **Save** 
 
-### 2. Add Indexers
+### 3. Add Indexers
 - `Indexers` in the sidebar
   - Click the **+** button to add a new indexer
   - Choose from public or private indexers and follow the prompts to configure them
   - Test and save each indexer once configured
   - If your Indexer requires a Cloudflare challenge, add the `flaresolverr` tag to the indexer.
   
-### 3. Connect Prowlarr to Sonarr & Radarr
+### 4. Connect Prowlarr to Sonarr & Radarr
 - `Settings > Apps`
   - Enabled advanced settings by clicking on `Show Advanced`
   - Click **+ Add Application**
@@ -362,7 +362,7 @@ docker logs qbittorrent
     - Click **Test** then **Save**
     - Repeat these steps for **Radarr**
 
-### 4. Alerts
+### 5. Alerts
 - `Settings > Notificiations`
   - Click **+ Add**
     - Click **Gotify**
@@ -439,22 +439,7 @@ docker logs qbittorrent
     - Repeat for **Radarr Settings**
   - Click **Save Settings**
 
-### 5. Seeker
-- `Settings > Seeker`
-  - **Search Settings**
-    - Toggle `Search Enabled`
-    - **Search Interval**: `6 hours`
-  - **Proactive Search**
-    - Toggle `Proactive Search`
-    - **Post-Release Grace Period (hours)**: `24`
-  - **Instances**
-    - **Sonarr**
-      - Toggle `Monitored Only`
-    - **Radarr**
-      - Toggle `Monitored Only`
-  Click **Save Settings**
-
-### 6. Notifications
+### 5. Notifications
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
