@@ -213,7 +213,7 @@ docker logs qbittorrent
   - Check `Unmonitor Deleted Episodes`
   - Click **Save Changes**
 
-### 5a. Custom Formats and Profiles for Shows
+### 5. Custom Formats and Profiles for Shows
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
     - Open the `5.1 Surround.json` file from this repository and paste the JSON in the empty `Custom Format JSON` box and click the  `Import` then **Save**. Repeat this process for the following JSON files.
@@ -231,7 +231,7 @@ docker logs qbittorrent
         - **x265**: `1`
       - Click **Save**
 
-### 5b. Custom Formats and Profiles for Anime (Optional)
+### 6. Custom Formats and Profiles for Anime (Optional)
 - `Settings > Custom Formats`
   - Then click on the + to add a new **Custom Format** followed by the Import in the lower left
   - Import the `Erai-Raws Custom Format.json`, `Erai-Raws Perferred Subs.json`, `Erai-Raws Preferred Audio Language.json` and `SubsPlease HorribleSubs Custom Format.json` Custom Formats
@@ -250,13 +250,13 @@ docker logs qbittorrent
       - **SubsPlease/HorribleSubs Releases Custom Format**: `10`
       - **x265**: `1`
 
-### 6. Alerts
+### 7. Alerts
 - `Settings > Connect`
   - Click **+ Add**
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
-      - **Gotify Server**: `http://gotify:80`
+      - **Gotify Server**: `http://gluetun:8880`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Sonarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -316,7 +316,7 @@ docker logs qbittorrent
     - Click **Gotify**
       - Uncheck `On Grab`
       - Uncheck `On File Import`
-      - **Gotify Server**: `http://gotify:80`
+      - **Gotify Server**: `http://gluetun:8880`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Radarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -359,7 +359,7 @@ docker logs qbittorrent
 - `Settings > Notificiations`
   - Click **+ Add**
     - Click **Gotify**
-      - **Gotify Server**: `http://gotify:80`
+      - **Gotify Server**: `http://gluetun:8880`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Prowlarr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -436,7 +436,7 @@ docker logs qbittorrent
 - `Notifications > Add Provider`
   - Click **Gotify**
     - **Name**: `Gotify`
-    - **Server URL**: `http://gotify:80`
+    - **Server URL**: `http://gluetun:8880`
     - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Cleanuparr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
@@ -492,10 +492,10 @@ docker logs qbittorrent
   - Check `Hide Available Media`
   - Click **Save Changes**
 
-### 3. Notifications
+### 4. Notifications
 - `Notifications > Gotify`
   - Check **Enable Agent**
-  - **Server URL**: `http://gotify:80`
+  - **Server URL**: `http://gluetun:8880`
   - **Application Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Seerr` and copy the token
   - Check all the **Notifications Types** click **Test** then **Save Changes**
 
@@ -525,18 +525,7 @@ docker logs qbittorrent
     - **Port**: `7878`
     - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
 
-### 3. Notifications
-- Open `http://<ip>:6246 > Settings > Notifications`
-  - `Add Agent`
-    - **Name**: `Gotify`
-    - Check `Enabled`
-    - **Agent**: `Gotify`
-    - **URL**: `http://gotify:80`
-    - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
-    - Check all `Types` boxes
-    - Click **Test Connection** and **Save Changes**
-
-### 4a. Rules - Movies Leaving Soon
+### 3. Rules - Movies Leaving Soon
 - Open `http://<ip>:6246 > Rules`
   - Click `New Rule`
     - **Name**: `Movies Leaving Soon`
@@ -553,7 +542,7 @@ docker logs qbittorrent
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
 
-### 4b. Rules - Episodes Leaving Soon
+### 4. Rules - Episodes Leaving Soon
   - Click `New Rule`
     - **Name**: `Episodes Leaving Soon`
     - **Library**: `Shows`
@@ -570,7 +559,7 @@ docker logs qbittorrent
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
 
-### 4b. Rules - Anime Leaving Soon
+### 5. Rules - Anime Leaving Soon
   - Click `New Rule`
     - **Name**: `Anime Leaving Soon`
     - **Library**: `Anime`
@@ -586,3 +575,14 @@ docker logs qbittorrent
         - **Select Second Value...**: `Text`
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
+
+### 6. Notifications
+- Open `http://<ip>:6246 > Settings > Notifications`
+  - `Add Agent`
+    - **Name**: `Gotify`
+    - Check `Enabled`
+    - **Agent**: `Gotify`
+    - **URL**: `http://gluetun:8880`
+    - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
+    - Check all `Types` boxes
+    - Click **Test Connection** and **Save Changes**
