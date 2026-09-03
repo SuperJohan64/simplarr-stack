@@ -3,7 +3,7 @@ services:
   deunhealth:
     image: qmcgaw/deunhealth:${VERSIONTAG_DEUNHEALTH}
     container_name: deunhealth
-    restart: always
+    restart: unless-stopped
     network_mode: "none"
     environment:
       - LOG_LEVEL=info
@@ -15,9 +15,9 @@ services:
   gluetun:
     image: qmcgaw/gluetun:${VERSIONTAG_GLUETUN}
     container_name: gluetun
+    restart: unless-stopped
     networks: 
       - simplarr-stack_network
-    restart: unless-stopped
     cap_add:
       - NET_ADMIN
     ports:
@@ -70,10 +70,10 @@ services:
     image: gotify/server:${VERSIONTAG_GOTIFY}
     container_name: gotify
     restart: unless-stopped
-    network_mode: service:gluetun
-    depends_on:
-          gluetun:
-            condition: service_healthy
+    networks: 
+      - simplarr-stack_network
+    ports:
+      - 8880:8880
     environment:
       - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
       - PUID=${GLOBAL_PUID}
@@ -82,14 +82,6 @@ services:
       - GOTIFY_SERVER_PORT=8880
     volumes:
       - ${GLOBAL_DOCKERROOTPATH}/gotify/gotify_data:/app/data
-    healthcheck:
-        test: ping -c 1 www.google.com || exit 1
-        interval: ${HEALTHCHECK_INTERVAL}
-        retries: ${HEALTHCHECK_RETRIES}
-        start_period: ${HEALTHCHECK_STARTPERIOD}
-        timeout: ${HEALTHCHECK_TIMEOUT}
-    labels:
-      deunhealth.restart.on.unhealthy: ${DEUNHEALTH_RESTART}
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:${VERSIONTAG_PROWLARR}
@@ -191,9 +183,9 @@ services:
   seerr:
     image: ghcr.io/seerr-team/seerr:${VERSIONTAG_SEERR}
     container_name: seerr
+    restart: unless-stopped
     networks: 
       - simplarr-stack_network
-    restart: unless-stopped
     ports:
       - 5055:5055
     environment:
@@ -206,6 +198,7 @@ services:
   cleanuparr:
     image: ghcr.io/cleanuparr/cleanuparr:${VERSIONTAG_CLEANUPARR}
     container_name: cleanuparr
+    restart: unless-stopped
     networks: 
       - simplarr-stack_network
     restart: unless-stopped
@@ -224,6 +217,7 @@ services:
   maintainerr:
     image: ghcr.io/maintainerr/maintainerr:${VERSIONTAG_MAINTAINERR}
     container_name: maintainerr
+    restart: unless-stopped
     networks: 
       - simplarr-stack_network
     restart: unless-stopped
