@@ -2,7 +2,7 @@
 
 This project guides you in building an ARR-Stack with Plex or Jellyfin in Docker, focusing on configuring the ARR apps. It does not cover Plex, Jellyfin, or other app configurations, as preferences vary.
 
-It assumes you'll be using NordVPN with the OpenVPN protocol to route BitTorrent traffic from public trackers. If you're not a NordVPN user and want to use another VPN provider, you'll need to adjust the Gluetun configuration in your `simplarr-stack.env` file. For instructions, refer to the [Gluetun documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
+It assumes you'll be using NordVPN with the OpenVPN protocol. If you want to use WireGuard or another VPN provider, adjust the Gluetun configuration in your `simplarr-stack.env` file. Refer to the [Gluetun's documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) for instructions.
 
 ## Included Containers
 
