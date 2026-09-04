@@ -48,7 +48,7 @@ Media
 └── Shows
 ```
 
-The containers will map `Media` to `/data/` allowing you to access these folders at  `/data/Shows/`, `/data/Downloads/`, `/data/Movies/`, etc.
+The containers will map `Media` to `/data/` allowing you to access these folders at  `/data/Shows/`, `/data/Movies/`, `/data/Downloads/Complete/`, etc.
 
 ```
 data
