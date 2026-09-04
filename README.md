@@ -36,6 +36,13 @@ OR
 
 To ensure seamless hardlinks and instant atomic moves across **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin**, all containers must share the **exact same volume mount points**. Mismatched volume paths will cause imports to fail.
 
+| Host Path | Container Path (`/data/`) |
+| :--- | :--- |
+| `Media/Anime` | `/data/Anime` |
+| `Media/Downloads` | `/data/Downloads` |
+| `Media/Movies` | `/data/Movies` |
+| `Media/Shows` | `/data/Shows` |
+
 ### Host / Server Path
 
 Organize your main storage drive or share using the following structure:
@@ -53,13 +60,6 @@ Media/
 ### Container Mount Point (`/data`)
 
 Mount the host's root `Media` directory directly to `/data` inside **every** container.
-
-| Host Path | Container Path (`/data/`) |
-| :--- | :--- |
-| `Media/Anime` | `/data/Anime` |
-| `Media/Downloads` | `/data/Downloads` |
-| `Media/Movies` | `/data/Movies` |
-| `Media/Shows` | `/data/Shows` |
 
 ```
 data/
