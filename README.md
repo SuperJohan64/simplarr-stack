@@ -2,7 +2,7 @@
 
 This project guides you in building an ARR-Stack with Plex or Jellyfin in Docker, focusing on configuring the ARR apps. It does not cover Plex, Jellyfin, or other app configurations, as preferences vary.
 
-It assumes you'll be using NordVPN with the OpenVPN protocol. If you want to use WireGuard or another VPN provider, adjust the Gluetun configuration in your `simplarr-stack.env` file. Refer to the [Gluetun's documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) for instructions.
+It assumes you'll be using NordVPN with the OpenVPN protocol. If you want to use WireGuard or another VPN provider, adjust the Gluetun configuration in your `simplarr-stack.env` file. Refer to [Gluetun's documentation](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) for instructions.
 
 ## Included Containers
 
@@ -358,9 +358,9 @@ docker logs qbittorrent
 - `Settings > Apps`
   - Enabled advanced settings by clicking on `Show Advanced`
   - Click **+ Add Application**
-  - Choose **Sonarr** or **Radarr**
+  - Choose **Sonarr**
+    - Click the `Advanced settings shown` gear next to the `Test` button
     - **Name**: e.g., `Sonarr`
-    - **Host**: `http://localhost:8989` or `http://localhost:7878`
     - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
     - Check `Sync Reject Blocklisted Torrent Hashes While Grabbing`
     - Click **Test** then **Save**
