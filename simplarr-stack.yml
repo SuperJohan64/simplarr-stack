@@ -218,7 +218,6 @@ services:
     restart: unless-stopped
     networks: 
       - simplarr-stack_network
-    restart: unless-stopped
     ports:
       - 6246:6246
     volumes:
