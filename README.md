@@ -59,7 +59,7 @@ Media/
 
 ### Container Mount Point (`/data`)
 
-Mount the host's root `Media` directory directly to `/data` inside **every** container.
+Mount the host's root `Media` directory directly to `/data` inside your containers.
 
 ```
 data/
