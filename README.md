@@ -40,6 +40,7 @@ To ensure seamless hardlinks and instant atomic moves across **qBittorrent**, **
 
 Organize your main storage drive or share using the following structure:
 
+```
 Media/
 ├── Anime/
 ├── Downloads/
@@ -47,8 +48,7 @@ Media/
 │   └── Downloading/
 ├── Movies/
 └── Shows/
-
----
+```
 
 ### Container Mount Point (`/data`)
 
@@ -61,6 +61,7 @@ Mount the host's root `Media` directory directly to `/data` inside **every** con
 | `Media/Movies` | `/data/Movies` |
 | `Media/Shows` | `/data/Shows` |
 
+```
 data/
 ├── Anime/
 ├── Downloads/
@@ -68,6 +69,7 @@ data/
 │   └── Downloading/
 ├── Movies/
 └── Shows/
+```
 
 ## Getting Started
 
