@@ -200,7 +200,6 @@ services:
     restart: unless-stopped
     networks: 
       - simplarr-stack_network
-    restart: unless-stopped
     ports:
       - 11011:11011
     environment:
