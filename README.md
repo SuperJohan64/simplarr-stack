@@ -182,8 +182,8 @@ docker logs qbittorrent
 ### 5. Reverse Proxy (Optional)
 *Note if you don't have a reverse proxy (not included in this guide) you can skip this step.* 
  - `Tools > Options > Web UI > Authentication`
-  - Check `Enable reverse proxy support`
-  - **Trusted proxies list:** `reverse-proxy-ip`
+    - Check `Enable reverse proxy support`
+    - **Trusted proxies list:** `reverse-proxy-ip`
 
 ## Sonarr
 
