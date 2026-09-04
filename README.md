@@ -19,7 +19,7 @@ OR
 * **[DeUnhealth](https://github.com/qdm12/deunhealth)**: Restarts unhealthy containers.
 * **[Gluetun](https://github.com/qdm12/gluetun)**: A VPN client for routing container traffic.
 * **[FlareSolverr](https://github.com/flaresolverr/FlareSolverr/pkgs/container/flaresolverr)**: A proxy that completes Cloudflare challenges.
-* **[Gotify](https://github.com/gotify/server)**: A simple notification app for your alerts.
+* **[Gotify](https://github.com/gotify/server)**: A simple app for receiving notifications.
 * **[qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent/)**: A full-featured BitTorrent client.
 * **[Prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/)**: Manages torrent indexers.
 * **[Sonarr](https://docs.linuxserver.io/images/docker-sonarr/)**: Manages TV and anime libraries.
@@ -34,31 +34,40 @@ OR
 
 ## Folder Structure
 
-It's crucial to ensure that your **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** containers all share the **exact same volume mappings**. If these volumes differ, the containers won't work.
+To ensure seamless hardlinks and instant atomic moves across **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin**, all containers must share the **exact same volume mount points**. Mismatched volume paths will cause imports to fail.
 
-The host or file server's folder structure used by this project is as follows.
+### Host / Server Path
 
-```
-Media
-├── Anime
-├── Downloads
-│   ├── Complete
-│   └── Downloading
-├── Movies
-└── Shows
-```
+Organize your main storage drive or share using the following structure:
 
-The containers will map `Media` to `/data` allowing you to access these folders at  `/data/Shows`, `/data/Movies`, `/data/Downloads/Complete`, etc.
+Media/
+├── Anime/
+├── Downloads/
+│   ├── Complete/
+│   └── Downloading/
+├── Movies/
+└── Shows/
 
-```
-data
-├── Anime
-├── Downloads
-│   ├── Complete
-│   └── Downloading
-├── Movies
-└── Shows
-```
+---
+
+### Container Mount Point (`/data`)
+
+Mount the host's root `Media` directory directly to `/data` inside **every** container.
+
+| Host Path | Container Path (`/data/`) |
+| :--- | :--- |
+| `Media/Anime` | `/data/Anime` |
+| `Media/Downloads` | `/data/Downloads` |
+| `Media/Movies` | `/data/Movies` |
+| `Media/Shows` | `/data/Shows` |
+
+data/
+├── Anime/
+├── Downloads/
+│   ├── Complete/
+│   └── Downloading/
+├── Movies/
+└── Shows/
 
 ## Getting Started
 
@@ -250,7 +259,7 @@ docker logs qbittorrent
       - **SubsPlease/HorribleSubs Releases Custom Format**: `10`
       - **x265**: `1`
 
-### 7. Alerts
+### 7. Notifications
 - `Settings > Connect`
   - Click **+ Add**
     - Click **Gotify**
@@ -310,7 +319,7 @@ docker logs qbittorrent
       - **x265**: `1`
     - Click **Save**
 
-### 6. Alerts
+### 6. Notifications
 - `Settings > Connect`
   - Click **+ Add**
     - Click **Gotify**
@@ -355,12 +364,13 @@ docker logs qbittorrent
     - Click **Test** then **Save**
     - Repeat these steps for **Radarr**
 
-### 5. Alerts
+### 5. Notifications
 - `Settings > Notificiations`
   - Click **+ Add**
     - Click **Gotify**
       - **Gotify Server**: `http://gotify:8880`
       - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Prowlarr` and copy the token
+      - **Priority**: `Min`
       - Click **Test** and verify that the notifications are enabled then click **Save**
 
 ## Cleanuparr
@@ -439,6 +449,7 @@ docker logs qbittorrent
     - **Server URL**: `http://gotify:8880`
     - **App Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Cleanuparr` and copy the token
       - Click **Test** and verify that the notifications are enabled then click **Save**
+    - **Priority**: `0`
 
 ## Seerr
 
