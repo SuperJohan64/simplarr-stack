@@ -123,7 +123,7 @@ To create a Maintainerr container run:
 docker compose -f maintainerr.yml --env-file maintainerr.env up -d
 ```
 
-If you want Watchtower to update your containers dialy run:
+To create a Watchtower container run:
 
 ```bash
 docker compose -f watchtower.yml --env-file watchtower.env up -d
