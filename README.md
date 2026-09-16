@@ -115,7 +115,7 @@ To create your ARR-Stack run:
 docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
 ```
 
-### Extra Tools
+### Optional Tools
 
 To create a Maintainerr container run:
 
@@ -518,7 +518,7 @@ docker logs qbittorrent
   - **Application Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Seerr` and copy the token
   - Check all the **Notifications Types** click **Test** then **Save Changes**
 
-# Optional Containers
+# Optional Tools
 
 This section covers the configurations of optional containers that aren't required, but give your ARR-Stack more functionality.
 
