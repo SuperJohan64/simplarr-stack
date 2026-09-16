@@ -29,7 +29,7 @@ OR
 
 ### Optional Tools
 
-* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
+* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your libraries based on; age, content type, tags, or other metadata.
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 
 ## Folder Structure
@@ -519,6 +519,8 @@ docker logs qbittorrent
   - Check all the **Notifications Types** click **Test** then **Save Changes**
 
 # Optional Containers
+
+This section covers the configurations of optional containers that aren't required, but give your ARR-Stack more functionality.
 
 ## Maintainerr
 
