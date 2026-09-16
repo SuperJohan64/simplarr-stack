@@ -92,7 +92,6 @@ services:
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/prowlarr:/config
     healthcheck:
         test: ping -c 1 www.google.com || exit 1
@@ -139,7 +138,6 @@ services:
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/sonarr:/config
       - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
@@ -164,7 +162,6 @@ services:
       - PGID=${GLOBAL_PGID}
       - TZ=${GLOBAL_TIMEZONE}
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ${GLOBAL_DOCKERROOTPATH}/radarr:/config
       - ${GLOBAL_MEDIA_SHOWS}:/data/Shows
       - ${GLOBAL_MEDIA_MOVIES}:/data/Movies
