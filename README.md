@@ -217,8 +217,7 @@ docker logs qbittorrent
 - `Settings > Media Management`
   - Click `Show Advanced`
   - Check `Rename Episodes`
-  - Check `Replace Illegal Characters` 
-  - **Colon Repplacement**: `Delete`
+  - Check `Replace Illegal Characters`
   - Optional - Only change these settings if you want a clean file name
     - **Standard Episode Format**: `{Series Title} S{season:00}E{episode:00} {Episode Title}`
     - **Daily Episode Format**: `{Series Title} {Air-Date} {Episode Title}`
@@ -302,7 +301,6 @@ docker logs qbittorrent
   - Click `Show Advanced`
   - Check `Rename Movies`
   - Check `Replace Illegal Characters` 
-  - **Colon Repplacement**: `Delete`
   - Optional - Only change this setting if you want a clean file name
     - **Standard Movie Format**: `{Movie Title} ({Release Year})`
   - Check `Delete empty folders`
@@ -535,20 +533,31 @@ This section covers the configurations of optional containers that aren't requir
       - Click **Test Connection** and **Save Changes**
 
 ### 2. Setup Sonarr & Radarr
-- Open `http://<ip>:6246 > Settings > Sonarr`
-  - `Add Server`
-    - **Server Name**: `Sonarr`
-    - **Hostname or IP**: `gluetun`
-    - **Port**: `8989`
-    - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
 - Open `http://<ip>:6246 > Settings > Radarr`
   - `Add Server`
     - **Server Name**: `Radarr`
     - **Hostname or IP**: `gluetun`
     - **Port**: `7878`
     - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
+- Open `http://<ip>:6246 > Settings > Sonarr`
+  - `Add Server`
+    - **Server Name**: `Sonarr`
+    - **Hostname or IP**: `gluetun`
+    - **Port**: `8989`
+    - **API Key**: Found in the **Sonarr/Radarr > Settings > General** section
 
-### 3. Rules - Movies Leaving Soon
+### 3. Notifications
+- Open `http://<ip>:6246 > Settings > Notifications`
+  - `Add Agent`
+    - **Name**: `Gotify`
+    - Check `Enabled`
+    - **Agent**: `Gotify`
+    - **URL**: `http://gotify:8880`
+    - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
+    - Check all `Types` boxes
+    - Click **Test Connection** and **Save Changes**
+
+### 4. Rules - Movies Leaving Soon
 - Open `http://<ip>:6246 > Rules`
   - Click `New Rule`
     - **Name**: `Movies Leaving Soon`
@@ -565,13 +574,13 @@ This section covers the configurations of optional containers that aren't requir
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
 
-### 4. Rules - Episodes Leaving Soon
+### 5. Rules - Episodes Leaving Soon
   - Click `New Rule`
     - **Name**: `Episodes Leaving Soon`
     - **Library**: `Shows`
     - **Media type**: `Episodes`
     - **Sonarr server**: `Sonarr`
-    - **Sonarr action**: `Unmonitor and delete files`
+    - **Sonarr action**: `Unmonitor and delete episode`
     - Under **Notifications** click `Configure`
       - Check the box for your notification agent
     - Scroll down to the **Rules** section
@@ -582,13 +591,13 @@ This section covers the configurations of optional containers that aren't requir
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
 
-### 5. Rules - Anime Leaving Soon
+### 6. Rules - Anime Leaving Soon
   - Click `New Rule`
     - **Name**: `Anime Leaving Soon`
     - **Library**: `Anime`
     - **Media type**: `Episodes`
     - **Sonarr server**: `Sonarr`
-    - **Sonarr action**: `Unmonitor and delete files`
+    - **Sonarr action**: `Unmonitor and delete episode`
     - Under **Notifications** click `Configure`
       - Check the box for your notification agent
     - Scroll down to the **Rules** section
@@ -598,14 +607,3 @@ This section covers the configurations of optional containers that aren't requir
         - **Select Second Value...**: `Text`
         - **Custom Value**: `temp`
     - Scroll to bottom of the page and click **Save**
-
-### 6. Notifications
-- Open `http://<ip>:6246 > Settings > Notifications`
-  - `Add Agent`
-    - **Name**: `Gotify`
-    - Check `Enabled`
-    - **Agent**: `Gotify`
-    - **URL**: `http://gotify:8880`
-    - **Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Maintainerr` and copy the token
-    - Check all `Types` boxes
-    - Click **Test Connection** and **Save Changes**
