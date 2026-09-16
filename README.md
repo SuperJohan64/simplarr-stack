@@ -34,7 +34,7 @@ OR
 
 ## Folder Structure
 
-To ensure seamless hardlinks and instant atomic moves across **qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin**, all containers must share the **exact same volume mount points**. Mismatched volume paths will cause imports to fail.
+**qBittorrent**, **Sonarr**, **Radarr**, and **Plex/Jellyfin** must share the **exact same volume mount points**. Mismatched volume paths will cause imports to fail.
 
 | Host Path | Container Path (`/data/`) |
 | :--- | :--- |
