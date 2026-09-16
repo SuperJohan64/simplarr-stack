@@ -30,7 +30,7 @@ OR
 ### Optional Tools
 
 * **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your libraries based on; age, content type, tags, or other metadata.
-* **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
+* **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and deletes old images on the 15th day of each month at 4am.
 
 ## Folder Structure
 
