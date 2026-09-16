@@ -181,7 +181,7 @@ docker logs qbittorrent
   - **When Torrent Category changed**: `Relocate Torrent`
   - **When Default Save Path changed**: `Relocate affected torrents`
   - **When Category Save Path changed**: `Relocate affected torrents`
-  - Check `Use Subcategories`
+  - Check `Use Category paths in Manual Mode`
   - **Default Save Path**: `/data/Downloads/Complete`
   - Check **Keep incomplete torrents in**: `/data/Downloads/Downloading`
 
