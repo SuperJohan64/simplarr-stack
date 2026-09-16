@@ -1,4 +1,5 @@
-services:  
+services:
+
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:${VERSIONTAG_JELLYFIN}
     container_name: jellyfin

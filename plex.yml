@@ -1,4 +1,5 @@
-services:  
+services:
+
   plex:
     container_name: plex
     image: linuxserver/plex:${VERSIONTAG_PLEX}

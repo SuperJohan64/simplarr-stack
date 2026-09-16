@@ -26,10 +26,10 @@ OR
 * **[Radarr](https://docs.linuxserver.io/images/docker-radarr/)**: Manages movie libraries.
 * **[Cleanuparr](https://github.com/cleanuparr/Cleanuparr/pkgs/container/cleanuparr)**: Removes malicious and stalled downloads from qBittorrent.
 * **[Seerr](https://github.com/seerr-team/seerr)**: A front-end for managing media library requests.
-* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
 
 ### Optional Tools
 
+* **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your library.
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and removes old images at 4am daily.
 
 ## Folder Structure
@@ -116,6 +116,12 @@ docker compose -f simplarr-stack.yml --env-file simplarr-stack.env up -d
 ```
 
 ### Extra Tools
+
+To create a Maintainerr container run:
+
+```bash
+docker compose -f maintainerr.yml --env-file maintainerr.env up -d
+```
 
 If you want Watchtower to update your containers dialy run:
 
@@ -511,6 +517,8 @@ docker logs qbittorrent
   - **Server URL**: `http://gotify:8880`
   - **Application Token**: Go to `http://<ip>:8880 > Apps > Create Application` and create a new application called `Seerr` and copy the token
   - Check all the **Notifications Types** click **Test** then **Save Changes**
+
+# Optional Containers
 
 ## Maintainerr
 

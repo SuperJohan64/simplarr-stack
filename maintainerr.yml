@@ -1,0 +1,19 @@
+services:
+
+  maintainerr:
+    image: ghcr.io/maintainerr/maintainerr:${VERSIONTAG_MAINTAINERR}
+    container_name: maintainerr
+    restart: unless-stopped
+    networks: 
+      - simplarr-stack_network
+    ports:
+      - 6246:6246
+    volumes:
+      - ${GLOBAL_DOCKERROOTPATH}/maintainerr/data:/opt/data
+    environment:
+      - TZ=${GLOBAL_TIMEZONE}
+
+networks:
+  simplarr-stack_network:
+    name: ${SIMPLARR_NETWORK}
+    driver: bridge

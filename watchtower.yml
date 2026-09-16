@@ -1,4 +1,5 @@
 services:
+
   watchtower:
     image: nickfedor/watchtower:${VERSIONTAG_WATCHTOWER}
     container_name: watchtower
