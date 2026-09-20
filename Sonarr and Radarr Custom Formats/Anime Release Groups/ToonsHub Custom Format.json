@@ -1,0 +1,15 @@
+{
+  "name": "ToonsHub Custom Format",
+  "includeCustomFormatWhenRenaming": false,
+  "specifications": [
+    {
+      "name": "ToonsHub Releases Condition",
+      "implementation": "ReleaseGroupSpecification",
+      "negate": false,
+      "required": true,
+      "fields": {
+        "value": "(?i)ToonsHub"
+      }
+    }
+  ]
+}
