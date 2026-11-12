@@ -130,6 +130,12 @@ To create a Watchtower container run:
 docker compose -f watchtower.yml --env-file watchtower.env up -d
 ```
 
+To create a Heimdall container run:
+
+```bash
+docker compose -f heimdall.yml --env-file heimdall.env up -d
+```
+
 # Container Configuration
 
 Next, configure your media server and ARR-stack applications with the settings below.
