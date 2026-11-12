@@ -31,6 +31,7 @@ OR
 
 * **[Maintainerr](https://github.com/maintainerr/maintainerr)**: Deletes unwanted media from your libraries based on; age, content type, tags, or other metadata.
 * **[Watchtower (forked by nicholas-fedor)](https://github.com/nicholas-fedor/watchtower)**: Automatically updates containers and deletes old images monthly on the 15th day at 4am.
+* **[Heimdall](https://docs.linuxserver.io/images/docker-heimdall/)**: A custom homepage that allows you to create bookmarks for all your apps.
 
 ## Folder Structure
 
